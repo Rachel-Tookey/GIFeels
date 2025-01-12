@@ -17,4 +17,43 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
+
+    const diaryBox = document.getElementById('diaryText');
+    const editText = document.getElementById('edit');
+
+    editText.addEventListener('click', () => textBox() );
+
+    function textBox() {
+
+            diaryBox.innerHTML =
+            `<textarea type="text" value="${diaryBox.textContent}" class="diary-input" wrap="soft" maxlength="350">
+            ${diaryBox.textContent}</textarea>`;
+
+            const textarea = diaryBox.querySelector('textarea');
+
+
+
+            function resizeInput() {
+                textarea.style.height = 'auto';
+                textarea.style.height = `${textarea.scrollHeight}px`;
+
+            }
+
+            resizeInput();
+
+            textarea.addEventListener(`focus`, () => textarea.select() )
+
+            textarea.addEventListener('input', resizeInput);
+
+            textarea.addEventListener('blur', () => {
+                    const updatedValue = textarea.value;
+                    diaryBox.textContent = updatedValue;
+                });
+
+            textarea.focus();
+
+        }
+
+
+
 });

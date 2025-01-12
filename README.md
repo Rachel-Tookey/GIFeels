@@ -13,7 +13,7 @@ This app is built with MySQL, Python and Flask for the back-end. The front-end i
 
 ### Setup 
 
-In a rush? Run the app without Google OAuth and skip step 3 below. You will need to change app.run on run.py to [run.py](/run.py) `app.run(debug=True), host='0.0.0.0', port=443)`
+In a rush? Run the app without Google OAuth and skip step 3 below. You will need to change app.run on run.py to [run.py](/run.py) `app.run(debug=True), host='0.0.0.0', port=5500)`. Please be aware certain endpoints related to OAuth will not function correctly. 
 
 1. Create a new file at root level called .env. Copy and paste the template from [template_env](/template_env) and add your GIPHY API key, Google Auth Client Id, Key and Domain, MySQL user and password where indicated. (Using .env will keep your personal information secure)
 2. Create and activate a virtual environment, then install all requirements from [requirements.txt](/requirements.txt)
@@ -34,7 +34,7 @@ In a rush? Run the app without Google OAuth and skip step 3 below. You will need
 6. Run [run.py](/run.py) to launch the app 
 
 ### Running the app
-By running app.py in your IDE you will be able to launch https://127.0.0.1:443 and go to the homepage of the app.
+By running app.py in your IDE you will be able to launch https://127.0.0.1:443 (or http://127.0.0.1:5500 if not using HTTPS) and go to the homepage of the app.
 
 Please note: the front-end design has been optimised for Google Chrome Browser and for the best experience, we'd recommend using this.
 

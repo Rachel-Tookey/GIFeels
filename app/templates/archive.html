@@ -14,11 +14,12 @@
         </div>
     </section>
 
-    <div class="container">
-        <div class="row">
+    <div class="container2">
 
             <!-- Your saved emotion and gif for that date -->
-            <div class="col-6">
+             <div class="left-column">
+
+
                 <div class="archive-body">
                     <div id="feeling-body">
                         <h3>You were feeling</h3>
@@ -27,34 +28,31 @@
                             <source src="{{ record.gif_url }}" type="video/mp4">
                         </video>
                     </div>
-                </div>
             </div>
-
-            <!-- Your diary entry -->
-            <div class="col-6">
-                <div class="diary">
-                    <div class="diary-body">
-                        <h3>Diary entry</h3>
-                        <p class="diary-text">{{record.diary}}</p>
-                    </div>
-                </div>
-            </div>
-            
-        <!-- Your saved quote / joke -->
-        <div class="col-6">
+                                          <!-- Your saved quote / joke -->
             <div class="quote-body">
                 <h3>{{record.choice}}</h3>
                 <p class="quote-text">{{record.quote_joke}}</p>
             </div>
-        </div>
+ </div>
+    <div class="right-column">
+            <!-- Your diary entry -->
+                <div class="diary">
+                    <div id="edit" class="diary-body">
+                        <h3>Diary entry</h3>
+                        <p id="diaryText" class="diary-text">{{record.diary}}</p>
+                    </div>
+            </div>
+              </div>
+
+
 
     <div class="button">
         <button id="delBut" class="btn">Delete Entry?</button>
     </div>
     </div>       
         </div>
-    </div>
-</div>
+
 {%- endblock %}
 {% block script %}
 <!-- Delete JavaScript -->

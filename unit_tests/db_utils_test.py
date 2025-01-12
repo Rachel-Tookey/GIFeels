@@ -1,133 +1,177 @@
-import unittest
-from unittest.mock import patch
 from app import db_utils
+import unittest
+from app import db, create_app
+from app.models.user import User
+from app.models.localuser import LocalUser
+from app.models.entries import Entries
+from datetime import datetime
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy import text
 
 
-class DbUtilsTest(unittest.TestCase):
+class TestWebApp(unittest.TestCase):
 
-    # Runs before every test to patch the connection to the DB
     def setUp(self):
-        self.patcher = patch('database.db_utils.DbConnection')
-        self.mock_db = self.patcher.start()
-        self.addCleanup(self.patcher.stop)
-        # A mock object is created when DbConnection is called
-        self.mock_instance = self.mock_db.return_value
-        self.mock_instance.fetch_data.return_value = [(1,)]
-        self.mock_instance.commit_data.return_value = None
-        self.mock_instance.close_connection.return_value = "DB connection closed."
-
-    # TEST DBCONNECTION CLASS
-    def test_DbConnection(self):
-        # test class is instantiated
-        db_instance = db_utils.DbConnection()
-        self.mock_db.assert_called_once()
-        self.assertEqual(db_instance.close_connection(), "DB connection closed.")
-        self.mock_instance.close_connection.assert_called_once()
-
-
-    # TEST INSERTING FUNCTIONS
-    def test_add_new_user(self):
-        # test correct input
-        testing_user = {
-            'FirstName': 'JJ',
-            'LastName': 'Doe',
-            'Username': 'jj',
-            'email': 'jj@example.com',
-            'hashed_password': 'hashedpassword123'
+        config_override = {
+            'TESTING': True,
+            'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',
+            'WTF_CSRF_ENABLED': False,
+            'SECRET_KEY' : 'test_key'
         }
-        response = db_utils.add_new_user(testing_user)
-        self.mock_instance.commit_data.assert_called_once()
-        self.assertEqual(response, "New user added.")
-        # test wrong input raises Exception
-        self.assertRaises(TypeError, db_utils.add_new_user({}))
-        self.assertRaises(TypeError, db_utils.add_new_user(['name', 'lastname', 'username', 'email', 'hashed_password']))
-        self.assertRaises(TypeError, db_utils.add_new_user({'FirstName': 0, 'LastName': 0, 'Username': 0, 'email': 0, 'hashed_password': 0}))
 
-    def test_add_journal(self):
-        response = db_utils.add_journal('Today was a good day.', 1, '2023-05-15')
-        self.mock_instance.commit_data.assert_called_once()
-        self.assertEqual(response, "Diary entry added")
-        self.assertRaises(Exception, db_utils.add_journal('asdaf', 100000, 20250201))
+        self.app = create_app(test_config=config_override)
+        self.app_ctxt = self.app.app_context()
+        self.app_ctxt.push()
+        db.create_all()
+        self.populate_db()
+        self.client = self.app.test_client()
 
-    def test_today_emotion(self):
-        db_utils.today_emotion(1, 'happy', 'http://giphy.com/happy', '2023-05-15', 'J', 'Response')
-        self.mock_instance.commit_data.assert_called_once()
-        self.assertRaises(Exception, db_utils.today_emotion(2, 1, 1, 1, 1, 1))
+    def tearDown(self):
+        db.drop_all()
+        self.app_ctxt.pop()
+        self.app = None
+        self.app_ctxt = None
+
+    def populate_db(self):
+        test_user_one = User(id=1, username="test_user", email="test@email")
+        test_user_two = User(id=2, username="another_user", email="test2@email")
+
+        db.session.add(test_user_one)
+        db.session.add(test_user_two)
+
+        test_localuser_one = LocalUser(id=1, user_id=1, first_name="test", family_name="user", password="123", accept_tos=True)
+        test_localuser_two = LocalUser(id=2, user_id=2, first_name="another", family_name="user", password="abc", accept_tos=True)
+
+        db.session.add(test_localuser_one)
+        db.session.add(test_localuser_two)
+
+        date = datetime(2024, 5, 31).date()
+        test_entries_one = Entries(id=1, user_id=1, entry_date=date, emotion='frustrated', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!')
+
+        date = datetime(2025, 5, 31).date()
+        test_entries_two = Entries(id=2, user_id=2, entry_date=date, emotion='happy', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
+
+        date = datetime(2026, 5, 31).date()
+        test_entries_three = Entries(id=3, user_id=1, entry_date=date, emotion='angry', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Quote', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
 
 
-    # TEST RETRIEVING FUNCTIONS
-    def test_get_records(self):
-        self.mock_instance.fetch_data.return_value = [(1, 'http://giphy.com', 'J', 'Response', 'Diary entry')]
-        response = db_utils.get_records(1, '2023-05-15')
-        self.mock_instance.fetch_data.assert_called_once()
-        self.assertEqual(response, (1, 'http://giphy.com', 'J', 'Response', 'Diary entry'))
-        self.assertRaises(Exception, db_utils.get_records('asdfa', '201201201'))
+        db.session.add(test_entries_one)
+        db.session.add(test_entries_two)
+        db.session.add(test_entries_three)
 
-    def test_get_user_id(self):
-        self.mock_instance.fetch_data.return_value = [(1,)]
-        user_id = db_utils.get_user_id('johndoe')
-        self.mock_instance.fetch_data.assert_called_once()
-        self.assertEqual(user_id, 1)
-        # test wrong input type
-        self.mock_instance.fetch_data.return_value = []
-        self.assertIsNone(db_utils.get_user_id(26))
+
+        db.session.commit()
+
+    def test_username_exists(self):
+        resp = db_utils.check_username_exists("test_user")
+        assert resp is True
+
+    def test_username_does_not_exist(self):
+        resp = db_utils.check_username_exists("wrong_user")
+        assert resp is False
+
+    def test_get_id_by_username(self):
+        resp = db_utils.get_user_id_by_username("another_user")
+        assert resp == 2
+
+    def test_get_userid_by_email(self):
+        resp = db_utils.get_user_id_by_email("test@email")
+        assert resp == 1
+
+    def test_get_password_by_id(self):
+        resp = db_utils.get_password(2)
+        assert resp == 'abc'
+
+    def test_email_exists(self):
+        resp = db_utils.check_email_exists("test@email")
+        assert resp is True
+
+    def test_email_does_not_exist(self):
+        resp = db_utils.check_email_exists("wrong@email")
+        assert resp is False
+
+    def test_check_entry_exists(self):
+        date = datetime(2024, 5, 31).date()
+        resp = db_utils.check_entry_exists(1, date)
+        assert resp is True
+
+    def test_check_entry_does_not_exist(self):
+        date = datetime(2024, 5, 30)
+        resp = db_utils.check_entry_exists(1, date)
+        assert resp is False
+
+    def test_returns_correct_entry(self):
+        date = datetime(2024, 5, 31).date()
+        test_entries_one = Entries(id=1, user_id=1, entry_date=date, emotion='frustrated', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
+        resp = db_utils.get_records(1, date)
+        assert resp.giphy_url == test_entries_one.giphy_url
+        assert resp.emotion == test_entries_one.emotion
+        assert resp.choice == test_entries_one.choice
+
+    def test_returns_null_entry(self):
+        date = datetime(2024, 5, 31).date()
+        resp = db_utils.get_records(2, date)
+        assert resp is None
+
+    def test_delete_entry(self):
+        date = datetime(2025, 5, 31).date()
+        resp = db_utils.get_records(2, date)
+        assert resp is not None
+        db_utils.delete_entry(2, date)
+        resp = db_utils.get_records(2, date)
+        assert resp is None
+
+    def test_check_journal_entry_exists(self):
+        date = datetime(2026, 5, 31).date()
+        resp = db_utils.check_journal_entry_exists(1, date)
+        assert resp is True
+
+    def test_check_journal_entry_null(self):
+        date = datetime(2024, 5, 31).date()
+        resp = db_utils.check_journal_entry_exists(1, date)
+        assert resp is False
+
+    def test_get_emotion_count_one(self):
+        resp = db_utils.get_emotion_count(1, 'frustrated', 5, 2024)
+        assert resp is 1
+
+    def test_get_emotion_count_zero(self):
+        resp = db_utils.get_emotion_count(1, 'frustrated', 4, 2024)
+        assert resp is 0
 
     def test_get_month_emotions(self):
-        self.mock_instance.fetch_data.return_value = [('happy', 5), ('sad', 2)]
-        response = db_utils.get_month_emotions(1, 5, 2023)
-        self.mock_instance.fetch_data.assert_called_once()
-        self.assertEqual(response, [0, 0, 0, 5, 2, 0])
-        # test wrong input
-        self.mock_instance.fetch_data.return_value = []
-        self.assertEqual([0, 0, 0, 0, 0, 0], db_utils.get_month_emotions('notint', 28, 'notyear'))
+        expected_list = [0, 0, 1, 0, 0, 0]
+        resp = db_utils.get_month_emotions(1, 5, 2024)
+        assert expected_list == resp
 
-    def test_get_password(self):
-        self.mock_instance.fetch_data.return_value = [('hashedpassword123',)]
-        password = db_utils.get_password('johndoe')
-        self.mock_instance.fetch_data.assert_called_once()
-        self.assertEqual(password, 'hashedpassword123')
-        # test wrong input
-        self.mock_instance.fetch_data.return_value = []
-        self.assertIsNone(db_utils.get_password(1))
-        self.assertRaises(Exception, db_utils.get_password('notarealusername'))
+    def test_get_month_emotions_none(self):
+        expected_list = [0, 0, 0, 0, 0, 0]
+        resp = db_utils.get_month_emotions(1, 1, 2024)
+        assert expected_list == resp
 
+    def test_emotions_added(self):
+        date = datetime(2027, 5, 31).date()
+        resp = db_utils.check_entry_exists(1, date)
+        assert resp is False
+        db_utils.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', choice='Joke', response='jks')
+        resp = db_utils.check_entry_exists(1, date)
+        assert resp is True
 
-    # TEST VALIDATING FUNCTIONS
-    def test_check_entry_journal(self):
-        self.mock_instance.fetch_data.return_value = [(1,)]
-        self.assertTrue(db_utils.check_entry_journal(1, '2023-05-15'))
-        self.mock_instance.fetch_data.assert_called_once()
-        # test wrong input
-        self.mock_instance.fetch_data.return_value = []
-        self.assertFalse(db_utils.check_entry_journal(1239123124141, 16541201))
-        self.assertRaises(Exception, db_utils.check_entry_journal(1239123124141, 'notadate'))
-
-    def test_check_username(self):
-        self.mock_instance.fetch_data.return_value = [(1,)]
-        result = db_utils.check_username_exists('johndoe')
-        self.mock_instance.fetch_data.assert_called_once()
-        self.assertTrue(result)
-        # test user not found
-        self.mock_instance.fetch_data.return_value = []
-        self.assertFalse(db_utils.check_username_exists(1))
-
-    def test_check_email(self):
-        self.mock_instance.fetch_data.return_value = [(1,)]
-        result = db_utils.check_email_exists('john@example.com')
-        self.mock_instance.fetch_data.assert_called_once()
-        self.assertTrue(result)
-        # test for email not found
-        self.mock_instance.fetch_data.return_value = []
-        self.assertFalse(db_utils.check_email_exists('notevenanemail'))
-        self.assertRaises(Exception, db_utils.check_email_exists([]))
-        self.assertEqual(0, db_utils.check_email_exists('notinthere'))
-
-    def test_order_month_data(self):
-        self.assertEqual([0, 0, 0, 0, 0, 0], db_utils.order_month_data([]))
-        self.assertEqual([0, 0, 0, 0, 0, 0], db_utils.order_month_data([('test', 'test')]))
-        self.assertEqual([3, 0, 0, 0, 0, 0], db_utils.order_month_data([('angry', 3)]))
+    def test_journal_added(self):
+        date = datetime(2027, 5, 31).date()
+        db_utils.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', choice='Joke', response='jks')
+        resp = db_utils.check_journal_entry_exists(1, date)
+        assert resp is False
+        db_utils.add_journal("New journal", 1, date)
+        resp = db_utils.check_journal_entry_exists(1, date)
+        assert resp is True
 
 
+    def test_add_local_user_fk_fail(self):
+        db.session.execute(text("PRAGMA foreign_keys = ON"))
+        localuser = { 'FirstName' : "new", 'LastName' : "user", 'password' : "abcdefg" }
+        with self.assertRaises(IntegrityError):
+            db_utils.add_new_local_user(20, user=localuser)
 
 
 if __name__ == "__main__":

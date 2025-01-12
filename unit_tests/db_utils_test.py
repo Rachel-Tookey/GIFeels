@@ -1,9 +1,20 @@
-import unittest
 from unittest.mock import patch
 from app import db_utils
+import unittest
+from app import create_app, db
 
 
 class DbUtilsTest(unittest.TestCase):
+
+    def create_app(self):
+        app = create_app()
+        app.config['TESTING'] = True
+        app.secret_key = 'test_key'
+        app.config['WTF_CSRF_ENABLED'] = False
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://'
+
+        return app
+
 
     # Runs before every test to patch the connection to the DB
     def setUp(self):
@@ -126,7 +137,6 @@ class DbUtilsTest(unittest.TestCase):
         self.assertEqual([0, 0, 0, 0, 0, 0], db_utils.order_month_data([]))
         self.assertEqual([0, 0, 0, 0, 0, 0], db_utils.order_month_data([('test', 'test')]))
         self.assertEqual([3, 0, 0, 0, 0, 0], db_utils.order_month_data([('angry', 3)]))
-
 
 
 

@@ -15,30 +15,32 @@
     display: flex;
     width: 100%;
     height: 100vh;
-    justify-content: space-between;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 40px;
 }
 
 .left-column {
     display: flex;
     flex-direction: column;
     width: 40%;
-    gap: 20px;
-    flex-grow: 1;
+    flex-grow: 0;
+    align-items: flex-start;
+    margin-left: 100px;
 }
 
 
 .right-column {
     display: flex;
     flex-direction: column;
-    width: 40%;
-    flex-grow: 1;
+    width: 50%;
+    flex-grow: 0;
+    align-items: flex-start;
 }
 
 
 
-.archive-body, .quote-body, .diary-body {
-  width: 80%;
+.archive-body {
+  width: 100%;
   overflow: hidden;
   margin: 50px auto; /* Center horizontally */
   border-radius: 16px;
@@ -48,9 +50,48 @@
   transition: transform .3s; /* Animation */
   word-wrap: break-word;
   overflow: hidden;
-  flex-grow: 1;
+  flex-grow: 0;
+  margin-top: 0px; /* Adjust spacing */
+  margin-bottom: 50px; /* Adjust spacing */
+  margin-right: 800px;
+}
+
+
+.diary-body {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  margin: 50px auto; /* Center horizontally */
+  border-radius: 16px;
+  border: 1.5px solid #a77b0133;
+  box-shadow: 8px 8px 8px rgba(170, 90, 10, 0.727);
+  background: linear-gradient(#FFF0C6, #fcde83a6);
+  transition: transform .3s; /* Animation */
+  word-wrap: break-word;
+  overflow: hidden;
+  flex-grow: 0;
+  margin-top: 0px; /* Adjust spacing */
+  margin-bottom: 50px; /* Adjust spacing */
+  margin-right: 800px;
+}
+
+
+.quote-body {
+  width: 100%;
+  overflow: hidden;
+  margin: 50px auto; /* Center horizontally */
+  border-radius: 16px;
+  border: 1.5px solid #a77b0133;
+  box-shadow: 8px 8px 8px rgba(170, 90, 10, 0.727);
+  background: linear-gradient(#FFF0C6, #fcde83a6);
+  transition: transform .3s; /* Animation */
+  word-wrap: break-word;
+  overflow: hidden;
+  flex-grow: 0;
   margin-top: 50px; /* Adjust spacing */
-   margin-bottom: 50px; /* Adjust spacing */
+  margin-bottom: 50px; /* Adjust spacing */
+  margin-right: 800px;
+  margin: auto; /* Center horizontally */
 }
 
 
@@ -67,7 +108,6 @@
   word-wrap: break-word;
   overflow: hidden;
 }
-
 
 .quote-body {
   margin-top: 5px;

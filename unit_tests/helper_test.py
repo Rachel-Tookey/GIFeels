@@ -1,4 +1,4 @@
-from app.helper import QuoteAPI, JokeAPI, MoodDict, MoodAPI
+from app.api_utils import QuoteAPI, JokeAPI, MoodDict, MoodAPI
 from unittest import TestCase, main
 from unittest.mock import MagicMock, patch
 

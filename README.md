@@ -8,13 +8,16 @@ This app is built with MYSQL, Python and Flask for the back-end. The front-end i
 - A virtual environment on your IDE to install requirements from requirements.txt
 - MySQL Workbench for the database (or equivalent)
 - A developer API key from the [Giphy developers website](https://developers.giphy.com/)
-- Create an account with Google Cloud using their free trial and follow [this guide](/https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=3473162&sjid=2552074629382520305-EU) to generate the correct credentials for using Oauth 
+- Create an account with Google Cloud using their free trial and follow [this guide](/https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=3473162&sjid=2552074629382520305-EU) to generate the correct credentials for using Oauth. 
 
 
 ### Setup 
+
+In a rush? Run the app without Google OAuth and skip step 3 below. You will need to change app.run on run.py to [run.py](/run.py) `app.run(debug=True), host='0.0.0.0', port=443)`
+
 1. Create a new file at root level called .env. Copy and paste the template from [template_env](/template_env) and add your GIPHY API key, Google Auth Client Id, Key and Domain, MySQL user and password where indicated. (Using .env will keep your personal information secure)
 2. Create and activate a virtual environment, then install all requirements from [requirements.txt](/requirements.txt)
-3. Set up an SSL certificate using the terminal commands below (providing information when prompted), and save these in the directory [certs](/certs)
+3. Set up an SSL certificate using the terminal commands below (providing information when prompted), and save these in the directory [certs](/certs). Check these are correctly added to your .gitignore.
 
 `$ pip install pyopenssl`
 

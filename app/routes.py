@@ -147,7 +147,8 @@ def show_archive_by_date(date):
               'diary': f"You didn't feel like journaling on {date} and that's okay!" if user_entry.diary_entry is None else user_entry.diary_entry}
 
     if request.method == 'DELETE':
-        # delete diary entry for that day
+        delete_entry(user_id=session['user_id'], date=date)
+        flash_error("Diary entry deleted")
         return render_template(url_for('main.show_overview'))
 
     return render_template("archive.html", date=date, record=record)

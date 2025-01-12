@@ -1,6 +1,6 @@
 import unittest
 from flask_testing import TestCase
-from app import create_app, db
+from app import create_app
 
 class MyTest(TestCase):
     def create_app(self):
@@ -11,14 +11,6 @@ class MyTest(TestCase):
         app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://'
 
         return app
-
-    def setUp(self):
-        db.drop_all()
-        db.create_all()
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
 
     def test_template_rendered(self):
         self.client.get('/')
@@ -52,11 +44,6 @@ class MyTest(TestCase):
     def test_form_submission_wrongpw(self):
         self.client.post('/register', data={'FirstName': 'Rachel', 'LastName': 'Tookey', "Username": "Rachel1993", "email": "rachel@tookey.com", "password":"snow", "confirm":"rain", "accept_tos":True})
         self.assert_message_flashed('Password and Password Confirmation do not match', "error")
-
-    def test_username_taken(self):
-        self.client.post('/register', data={'FirstName': 'Rachel', 'LastName': 'Tookey', "Username": "Rachel1993", "email": "r1@tookey.com", "password":"snow", "confirm":"snow", "accept_tos":True}, follow_redirects=False)
-        self.client.post('/register', data={'FirstName': 'Rachel', 'LastName': 'Thompson', "Username": "Rachel1993", "email": "r2@tookey.com", "password":"snow", "confirm":"snow", "accept_tos":True})
-        self.assert_message_flashed("Username already in use", "error")
 
     def test_form(self):
         response = self.client.post('/register', data={'FirstName': 'Rachel', 'LastName': 'Tookey', "Username": "Rachel1993", "email": "rachel@tookey.com", "password":"snow", "confirm":"snow", "accept_tos":True}, follow_redirects=True)

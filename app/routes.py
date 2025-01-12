@@ -1,5 +1,5 @@
 from app.db_utils import *
-from app.helper import QuoteAPI, JokeAPI, MoodDict
+from app.api_utils import QuoteAPI, JokeAPI, MoodDict
 from app.forms.registration_form import RegistrationForm
 from flask import render_template, request, flash, redirect, session, url_for
 from datetime import datetime
@@ -149,8 +149,6 @@ def show_archive_by_date(date):
     if request.method == 'DELETE':
         delete_entry(user_id=session['user_id'], date=date)
         flash_error("Diary entry deleted")
-        return render_template(url_for('main.show_overview'))
-
     return render_template("archive.html", date=date, record=record)
 
 

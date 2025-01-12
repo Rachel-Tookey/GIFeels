@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block title %}Archive{% endblock %} 
-{% block styles %} <link rel="stylesheet" href="../static/css/archive.css" />{% endblock %} 
+{% block styles %}
+<link rel="stylesheet" href="../static/css/archive.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
 {%- block main -%}
 <div class="main-section">
 
@@ -45,10 +48,15 @@
             </div>
         </div>
 
-
-
+    <div class="button">
+        <button id="delBut" class="btn">Delete Entry?</button>
+    </div>
     </div>       
         </div>
     </div>
 </div>
 {%- endblock %}
+{% block script %}
+<!-- Delete JavaScript -->
+<script src="{{ url_for('static', filename='archive.js') }}"></script>
+{% endblock %}

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+
     const emotions = ["happy", "calm", "sad", "worried", "frustrated", "angry"];
     const colors = {
         "happy": "#FFEEA8",

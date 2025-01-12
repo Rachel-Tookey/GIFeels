@@ -3,13 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from authlib.integrations.flask_client import OAuth
 from flask_bcrypt import Bcrypt
+from settings import Config
 
 db = SQLAlchemy()
 oauth = OAuth()
 bcrypt = Bcrypt()
 
 
-def create_app(config_class=None, test_config=None):
+def create_app(config_class=Config, test_config=None):
 
     app = Flask(__name__, instance_relative_config=True)
 

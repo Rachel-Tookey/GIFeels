@@ -8,6 +8,7 @@ from datetime import datetime
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import text
 
+
 class TestWebApp(unittest.TestCase):
 
     def setUp(self):

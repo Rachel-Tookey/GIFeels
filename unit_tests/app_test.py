@@ -1,15 +1,17 @@
 import unittest
 from flask_testing import TestCase
-from app import create_app
+from app import create_app, db
 
 class MyTest(TestCase):
-    def create_app(self):
-        app = create_app()
-        app.config['TESTING'] = True
-        app.secret_key = 'test_key'
-        app.config['WTF_CSRF_ENABLED'] = False
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://'
 
+    def create_app(self):
+        config_override = {
+            'TESTING': True,
+            'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',
+            'WTF_CSRF_ENABLED': False,
+            'SECRET_KEY' : 'test_key'
+        }
+        app = create_app(test_config=config_override)
         return app
 
     def test_template_rendered(self):

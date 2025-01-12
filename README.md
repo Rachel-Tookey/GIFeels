@@ -1,7 +1,7 @@
 ## Welcome To GIFeels 
 We have created a simple mood tracker to support mental health. As a guest you can see an inspirational quote or joke to improve your mindset. As a registered user you can log your moods, enter your thoughts in a journal and save your favourite jokes or quotes. You are also able to see a monthly overview of how you have been feeling.
 
-This app is built with MYSQL, Python and Flask for the back-end. The front-end is built using Jinja, HTML, CSS and JavaScript
+This app is built with MySQL, Python and Flask for the back-end. The front-end is built using Jinja, HTML, CSS and JavaScript
 
 ### You will need:
 

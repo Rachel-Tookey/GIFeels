@@ -144,7 +144,7 @@ def show_archive_by_date(date):
         flash_notification(f"No records saved on {date}")
         return redirect('/overview')
     record = {'emotion': user_entry.emotion, 'gif_url': user_entry.giphy_url, 'choice': user_entry.choice, 'quote_joke': user_entry.content,
-              'diary': f"You didn't feel like journaling on {date} and that's okay!" if user_entry.diary_entry is None else user_entry.diary_entry}
+              'diary': f"Click to add a diary entry for {date}!" if user_entry.diary_entry is None else user_entry.diary_entry}
 
     if request.method == 'DELETE':
         delete_entry(user_id=session['user_id'], date=date)

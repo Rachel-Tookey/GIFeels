@@ -4,8 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const monthYearDisplay = document.getElementById('monthYear');
     const prevMonthButton = document.getElementById('prevMonth');
     const nextMonthButton = document.getElementById('nextMonth');
+    const statsTitle = document.querySelector('.overview p');
 
     let currentDate = new Date();
+
+    let monthlyData = [];
 
     function renderCalendar() {
         const year = currentDate.getFullYear();
@@ -40,27 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function renderGraph() {
-        $(document).ready(function(){
-        $.ajax({
-          data : {
-            month : currentDate
-          },
-          type : 'POST',
-          url : '/overview'})
-        .done (function(data){
-        theChart.data.datasets[0].data = data.output;
-        theChart.options.title.text = data.label;
-        theChart.update();
-            });
-        e.preventDefault();
-        });
-    };
-
     function changeMonth(delta) {
         currentDate.setMonth(currentDate.getMonth() + delta);
         renderCalendar();
-        renderGraph();
+        renderGraph(); // this is mine
     }
 
     prevMonthButton.addEventListener('click', () => changeMonth(-1));
@@ -70,13 +56,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderGraph();
 
-    // Initial AJAX request for the current month
-    fetchDataForMonthYear(currentDate.getMonth() + 1, currentDate.getFullYear());
-
-    // Bind form submission to fetch data
-    $('#form').on('submit', function(e) {
+    function renderGraph() {
+        $(document).ready(function(){
+        $.ajax({
+          data : {
+            month : currentDate
+          },
+          type : 'POST',
+          url : '/overview'})
+        .done (function(data){
+        monthlyData = data.output;
+        renderMonthlyGraph(monthlyData)
+        statsTitle.textContent = data.label;
+            });
         e.preventDefault();
-        const selectedMonth = new Date($('#month').val());
-        fetchDataForMonthYear(selectedMonth.getMonth() + 1, selectedMonth.getFullYear());
+        });
+    };
+
+
+   function renderMonthlyGraph(monthlyData) {
+
+       const colors = {
+        "happy": "#FFEEA8",
+        "calm": "#D5E386",
+        "sad": "#D9E8F5",
+        "worried": "#D9D9D9",
+        "frustrated": "#F2BDC7",
+        "angry": "#ff9c78"};
+
+
+        const barsContainer = document.getElementById('bars');
+        barsContainer.innerHTML = ''; // Clear any existing bars
+
+        // Find the data for the current month
+        const currentMonthData = monthlyData;
+
+        constMaxVal = 0;
+
+        currentMonthData.forEach(emotion => {
+            if (constMaxVal < emotion.value) {
+                constMaxVal = emotion.value;
+
+            }
+
+         });
+
+        const unitSize = 250 / constMaxVal;
+
+
+        // Render the graph for the current month
+        currentMonthData.forEach(emotion => {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            bar.style.height = `${emotion.value * unitSize}px`; // Adjust height multiplier as needed
+
+            const barValue = document.createElement('div');
+            barValue.className = 'bar-value';
+            barValue.innerText = emotion.value;
+            bar.style.backgroundColor = colors[emotion.name];
+
+            bar.appendChild(barValue);
+            barsContainer.appendChild(bar);
+        });
+    }
+
+
+
+
     });
-});

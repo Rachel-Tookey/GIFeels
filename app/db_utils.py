@@ -102,12 +102,15 @@ def get_emotion_count(user_id, emotion, month, year):
 
 
 def get_month_emotions(user_id, month, year):
-    emotion_count = []
-    emotion_list = ["angry", "calm", "frustrated", "happy", "sad", "worried"]
+    emotion_dict = []
+    emotion_list = ["happy", "calm", "sad", "worried", "frustrated", "angry"]
     for emotion in emotion_list:
+        emotion_count = {}
         count = get_emotion_count(user_id, emotion, month, year)
-        emotion_count.append(count)
-    return emotion_count
+        emotion_count['name'] = emotion
+        emotion_count['value'] = count
+        emotion_dict.append(emotion_count)
+    return emotion_dict
 
 
 

@@ -3,19 +3,36 @@
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="../static/css/overview.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 {% endblock %}
 {% block main %}
+
+<div class="parent-container">
+
 <div class="overview">
-    <p>OVERVIEW</p>
+    <p></p>
 </div>
 
-<!-- Grid Container -->
 <div class="grid-container">
-    <!-- Canvas tag for chart -->
-    <canvas id="myChart"></canvas>
 
-    <!-- Calendar -->
+    <!-- Graph (Dummy)-->
+
+    <div class="graph-container">
+        <div class="bars" id="bars">
+            <!-- Bars will be dynamically inserted here -->
+        </div>
+        <div class="bar-labels">
+            <div class="bar-label">Happy</div>
+            <div class="bar-label">Calm</div>
+            <div class="bar-label">Sad</div>
+            <div class="bar-label">Worried</div>
+            <div class="bar-label">Frustrated</div>
+            <div class="bar-label">Angry</div>
+        </div>
+    </div>
+
+
+
+ <!-- Calendar -->
     <div class="calendar-container">
         <div class="calendar-header">
             <button id="prevMonth">❮</button>
@@ -35,44 +52,12 @@
             <div class="days" id="days"></div>
         </div>
     </div>
+
 </div>
 
-<!-- Form to input dates -->
 {% endblock %}
 {% block script %}
 <!-- Calendar JavaScript -->
 <script src="../static/overview.js"></script>
 
-<!-- Chart JavaScript-->
-<script type="text/javascript">
-
-
-const theChart = new Chart("myChart", {
-  type: "bar",
-  data: {
-    labels: ["Angry", "Calm", "Frustrated", "Happy", "Sad", "Worried"],
-    datasets: [{
-      backgroundColor: ["#ff9c78", "#D5E386", "#F2BDC7", "#FFEEA8", "#D9E8F5", "#D9D9D9"],
-      data: [0, 0, 0, 0, 0, 0]
-    }]
-  },
-  options: {
-    legend: {display: false},
-    title: {
-      display: true,
-      text: ""
-    },
-    scales: {yAxes: [{display: true,
-                            ticks: {
-                                beginAtZero: true,
-                                steps: 10,
-                                precision: 0,
-                                min: 0
-                            }
-                        }]
-                },
-  }
-});
-
-</script>
 {% endblock %}

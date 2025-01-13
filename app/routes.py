@@ -140,6 +140,7 @@ def show_overview():
 @login_required
 def show_archive_by_date(date):
     user_entry = get_records(session['user_id'], date)
+
     if user_entry is None:
         flash_notification(f"No records saved on {date}")
         return redirect('/overview')
@@ -158,7 +159,7 @@ def show_archive_by_date(date):
 @main.route('/register', methods=['GET', 'POST'])
 def register_user():
     form = RegistrationForm(request.form)
-    if request.method == 'POST':
+    if form.validate_on_submit(): # change back to Post? 
         user_form = {}
         for item in ["FirstName", "LastName", "Username", "email", "password", "confirm", "accept_tos"]:
             user_form[item] = request.form.get(item)

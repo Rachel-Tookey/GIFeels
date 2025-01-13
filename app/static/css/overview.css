@@ -1,10 +1,20 @@
+.parent-container {
+    position: relative;
+    width: 100%;
+}
+
+
 .overview {
+    position: absolute;
     text-align: center;
-    font-size: 45px;
+    font-size: 18px;
     font-family: "Outfit", sans-serif;
     font-weight: 700;
     color: #A77A01;
-    margin-top: 20px;
+    top: -210px;
+    left: -100px;
+    z-index: 10;
+    white-space: nowrap;
 }
 
 .grid-container {
@@ -46,7 +56,7 @@ have tried removing them and it made everything wonky. **/
     font-size: 1.2rem;
     font-style: normal;
   }
-  
+
   /* ENSURE NAV BAR STRETCHES ACROSS THE SCREEN */
   body::before {
     position: fixed;
@@ -116,23 +126,20 @@ have tried removing them and it made everything wonky. **/
     }
   }
 
+/* BODY */
+
+
 body {
-    background-color: #F2E7C4;
-    margin: 0;
     font-family: "Outfit", sans-serif;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
+    height: 100vh;
+    margin: 0;
+    background-color: #F2E7C4;
 }
 
-main {
-    flex: 1;
-    width: 100%;
-    padding: 80px 20px 170px;
-    box-sizing: border-box;
-}
+
 
 /* Calendar Styles */
 .calendar-container {
@@ -140,6 +147,12 @@ main {
     border-radius: 10px;
     box-shadow: 0 0 10px #0000001a;
     padding: 20px;
+    grid-column: 2;
+    position: fixed;
+    right: 15%;
+    top: 25%;
+    width: 515px;
+    height: 350px;
 }
 
 .calendar-header {
@@ -208,12 +221,8 @@ main {
     background: #fff;
 }
 
-#ajax-form-container {
-    text-align: center;
-    margin: 20px auto;
-    color: #A77A01;
-    font-family: "Outfit", sans-serif;
-}
+
+
 
 .btn #submit {
     width: 100%;
@@ -229,7 +238,68 @@ main {
     margin-bottom: 10px;
 }
 
-#myChart {
+
+/* GRAPH */
+
+
+.graph-container {
+    width: 80%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 20px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 515px;
+    height: 350px;
+    position: fixed;
+    left: 15%;
+    top: 25%;
+}
+
+.bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 300px;
     width: 100%;
-    max-width: 700px;
+}
+
+.bar {
+    width: 20%;
+    background-color: #7E70AA;
+    margin: 0 5px;
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.bar:hover {
+  background-color: #A77A01;
+  box-shadow: 0 0 10px #ff9c78;
+  transform: scale(1.05);
+}
+
+.bar-value {
+    margin-bottom: 5px;
+}
+
+.bar-labels {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    padding: 0 5px;
+}
+
+.bar-label {
+    font-size: 15px;
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
+    width: 20%; /* Match the width of the bar */
 }

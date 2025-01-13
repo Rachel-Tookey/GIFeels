@@ -119,6 +119,20 @@
   color:#8e6c10;
 }
 
+
+#delBut {
+  margin-top: 50px;
+  background: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px #7A5A01;
+  cursor: pointer;
+  font-size: 16px;
+  color: #7A5A01;
+  font-weight: 600;
+}
+
 .archive-body:hover,
 .quote-body:hover,
 .diary-body:hover{

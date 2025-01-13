@@ -4,7 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const deleteButton = document.getElementById('delBut');
 
-    deleteButton.addEventListener('click', () => sendRequest() );
+    deleteButton.addEventListener('click', () => {
+        let result = confirm("Delete this record? This cannot be undone.");
+        if (result === true) {
+                sendRequest();
+                }
+            }
+
+     );
 
     function sendRequest() {
             $.ajax({
@@ -15,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-
 
 
     const diaryBox = document.getElementById('diaryText');

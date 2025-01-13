@@ -4,7 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const deleteButton = document.getElementById('delBut');
 
-    deleteButton.addEventListener('click', () => sendRequest() );
+    deleteButton.addEventListener('click', () => {
+        let result = confirm("Delete this record? This cannot be undone.");
+        if (result === true) {
+                sendRequest();
+                }
+            }
+
+     );
 
     function sendRequest() {
             $.ajax({
@@ -15,6 +22,61 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+
+
+    const diaryBox = document.getElementById('diaryText');
+    const editText = document.getElementById('edit');
+
+    editText.addEventListener('click', () => textBox() );
+
+    function textBox() {
+
+            diaryBox.innerHTML =
+            `<textarea type="text" value="${diaryBox.textContent}" class="diary-input" wrap="soft" maxlength="350">
+            ${diaryBox.textContent}</textarea>`;
+
+            const textarea = diaryBox.querySelector('textarea');
+
+
+
+            function resizeInput() {
+                textarea.style.height = 'auto';
+                textarea.style.height = `${textarea.scrollHeight}px`;
+
+            }
+
+            resizeInput();
+
+            textarea.addEventListener(`focus`, () => textarea.select() )
+
+            textarea.addEventListener('input', resizeInput);
+
+            textarea.addEventListener('blur', () => {
+                    const updatedValue = textarea.value;
+                    if (diaryBox.textContent != textarea.value) {
+                            diaryBox.textContent = updatedValue;
+                            saveJournal(updatedValue);
+                    }
+                    diaryBox.textContent = updatedValue;
+                });
+
+            textarea.focus();
+
+        }
+
+        function saveJournal(valueToSave) {
+        $(document).ready(function(){
+        $.ajax({
+          data : {
+            content : valueToSave
+          },
+          type : 'PUT',
+          url : currentLocation})
+        .done ();
+        e.preventDefault();
+        });
+    };
+
 
 
 });

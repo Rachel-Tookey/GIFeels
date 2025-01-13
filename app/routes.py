@@ -136,7 +136,7 @@ def show_overview():
     return render_template("overview.html")
 
 
-@main.route('/archive/<date>', methods=['GET', 'DELETE'])
+@main.route('/archive/<date>', methods=['GET', 'PUT', 'DELETE'])
 @login_required
 def show_archive_by_date(date):
     user_entry = get_records(session['user_id'], date)
@@ -144,11 +144,14 @@ def show_archive_by_date(date):
         flash_notification(f"No records saved on {date}")
         return redirect('/overview')
     record = {'emotion': user_entry.emotion, 'gif_url': user_entry.giphy_url, 'choice': user_entry.choice, 'quote_joke': user_entry.content,
-              'diary': f"You didn't feel like journaling on {date} and that's okay!" if user_entry.diary_entry is None else user_entry.diary_entry}
+              'diary': f"Click to add a diary entry for {date}!" if user_entry.diary_entry is None else user_entry.diary_entry}
 
     if request.method == 'DELETE':
         delete_entry(user_id=session['user_id'], date=date)
-        flash_error("Diary entry deleted")
+
+    if request.method == 'PUT':
+        add_journal(request.form.get('content'), session['user_id'], date)
+
     return render_template("archive.html", date=date, record=record)
 
 

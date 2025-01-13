@@ -7,7 +7,7 @@ from sqlalchemy import and_, extract
 
 
 def today_emotion(user_id, emotion, giphy_url, date, choice, response):
-    new_entry = Entries(user_id=user_id, entry_date=date, emotion=emotion, giphy_url=giphy_url, choice=choice, content=response)
+    new_entry = Entries(user_id=user_id, entry_date=date, emotion=emotion, giphy_url=giphy_url, choice=choice.capitalize(), content=response)
     db.session.add(new_entry)
     db.session.commit()
 

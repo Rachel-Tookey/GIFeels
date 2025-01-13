@@ -136,7 +136,7 @@ def show_overview():
     return render_template("overview.html")
 
 
-@main.route('/archive/<date>', methods=['GET', 'DELETE'])
+@main.route('/archive/<date>', methods=['GET', 'PUT', 'DELETE'])
 @login_required
 def show_archive_by_date(date):
     user_entry = get_records(session['user_id'], date)
@@ -148,7 +148,10 @@ def show_archive_by_date(date):
 
     if request.method == 'DELETE':
         delete_entry(user_id=session['user_id'], date=date)
-        flash_error("Diary entry deleted")
+
+    if request.method == 'PUT':
+        add_journal(request.form.get('content'), session['user_id'], date)
+
     return render_template("archive.html", date=date, record=record)
 
 

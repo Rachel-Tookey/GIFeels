@@ -47,12 +47,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             textarea.addEventListener('blur', () => {
                     const updatedValue = textarea.value;
+                    if (diaryBox.textContent != textarea.value) {
+                            diaryBox.textContent = updatedValue;
+                            saveJournal(updatedValue);
+                    }
                     diaryBox.textContent = updatedValue;
                 });
 
             textarea.focus();
 
         }
+
+        function saveJournal(valueToSave) {
+        $(document).ready(function(){
+        $.ajax({
+          data : {
+            content : valueToSave
+          },
+          type : 'PUT',
+          url : currentLocation})
+        .done ();
+        e.preventDefault();
+        });
+    };
 
 
 

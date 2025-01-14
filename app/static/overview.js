@@ -19,10 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
         // Set the month and year in the header
-        monthYearDisplay.textContent = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        const monthAndYear = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        monthYearDisplay.textContent = monthAndYear;
+        statsTitle.textContent = "Your moods for " + monthAndYear;
+
 
         // Clear the previous days
         daysContainer.innerHTML = '';
+
 
         // Fill in the days of the month
         // Add empty divs for the days of the week before the start of the month
@@ -41,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
             dayDiv.appendChild(link);
             daysContainer.appendChild(dayDiv);
         }
+
+
+
     }
 
     function changeMonth(delta) {
@@ -67,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .done (function(data){
         monthlyData = data.output;
         renderMonthlyGraph(monthlyData)
-        statsTitle.textContent = data.label;
             });
         e.preventDefault();
         });

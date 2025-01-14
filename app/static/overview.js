@@ -64,13 +64,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let date = String(year) + String(month + 1).padStart(2, '0') + String(day);
             if (date in activeDates) {
+
+                    const giphy = 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzM1anp5b2N6YzNpaXBjNmg2Z2JiYnV1cmQ4YzMyaDVqa3dzcDQ1aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5K7ngCtszoxxbaBieC/giphy.gif';
+
                     const link = document.createElement('a');
+
                     link.textContent = day;
+
                     link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
                     dayDiv.appendChild(link);
+
+                    const gif = document.createElement('img');
+
+                    gif.src = giphy;
+
+                    gif.style.display = "none";
+                    dayDiv.appendChild(gif);
+
                     dayDiv.style.backgroundColor = activeDates[date];
-                    dayDiv.addEventListener('mouseenter', function() {document.body.style.backgroundColor = activeDates[date]; });
-                    dayDiv.addEventListener('mouseleave', function() {document.body.style.backgroundColor = '';
+
+
+                    dayDiv.addEventListener('mouseenter', function() {
+                    document.body.style.backgroundColor = activeDates[date];
+
+                    gif.style.maxWidth = '200px';
+
+                    gif.style.display = "block";
+                    gif.style.position = "absolute";
+                    });
+
+
+                    dayDiv.addEventListener('mouseleave', function() {
+                    document.body.style.backgroundColor = '';
+                    gif.style.display = "none";
         });
 
             } else {

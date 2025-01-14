@@ -133,7 +133,7 @@ def get_entry_dates_month(user_id, month, year):
             correct_url = giphy_split[0] + '.' + giphy_split[1] + '.' + giphy_split[2] + '.' + giphy_split[3] + '.gif'
         else:
             correct_url = giphy_split[0] + '.' + giphy_split[1] + '.' + giphy_split[2] + '.gif'
-        date_list[entry.entry_date.strftime("%Y%m%d")] = { 'color': colors[entry.emotion], 'url': correct_url }
+        date_list[entry.entry_date.strftime("%Y%m%d")] = {'color': colors[entry.emotion], 'url': correct_url}
     return date_list
 
 

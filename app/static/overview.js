@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     dayDiv.appendChild(link);
                     dayDiv.style.backgroundColor = activeDates[date];
+                    dayDiv.addEventListener('mouseenter', function() {document.body.style.backgroundColor = activeDates[date]; });
+                    dayDiv.addEventListener('mouseleave', function() {document.body.style.backgroundColor = '';
+        });
+
             } else {
                     const link = document.createElement('p');
                     link.textContent = day;

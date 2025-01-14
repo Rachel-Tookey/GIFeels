@@ -10,6 +10,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let monthlyData = [];
 
+    let activeDates = [];
+
+    function renderGraph() {
+        $(document).ready(function(){
+        $.ajax({
+          data : {
+            month : currentDate
+          },
+          type : 'POST',
+          url : '/overview'})
+        .done (function(data){
+            monthlyData = data.output;
+            activeDates = data.dates;
+            renderMonthlyGraph(monthlyData);
+            renderCalendar();
+            });
+        e.preventDefault();
+        });
+    };
+
+    renderGraph();
+
     function renderCalendar() {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
@@ -39,50 +61,37 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add the actual days of the month
         for (let day = 1; day <= daysInMonth; day++) {
             const dayDiv = document.createElement('div');
-            const link = document.createElement('a');
-            link.textContent = day;
-            link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            dayDiv.appendChild(link);
+
+            let date = String(year) + String(month + 1).padStart(2, '0') + String(day);
+            if (activeDates.includes(date)) {
+                    const link = document.createElement('a');
+                    link.textContent = day;
+                    link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    dayDiv.appendChild(link);
+            } else {
+                    const link = document.createElement('p');
+                    link.textContent = day;
+                    dayDiv.appendChild(link);
+            }
             daysContainer.appendChild(dayDiv);
         }
-
-
-
     }
+
+
+    renderCalendar();
 
     function changeMonth(delta) {
         currentDate.setMonth(currentDate.getMonth() + delta);
-        renderCalendar();
-        renderGraph(); // this is mine
+        renderGraph();
     }
 
     prevMonthButton.addEventListener('click', () => changeMonth(-1));
     nextMonthButton.addEventListener('click', () => changeMonth(1));
 
-    renderCalendar();
-
-    renderGraph();
-
-    function renderGraph() {
-        $(document).ready(function(){
-        $.ajax({
-          data : {
-            month : currentDate
-          },
-          type : 'POST',
-          url : '/overview'})
-        .done (function(data){
-        monthlyData = data.output;
-        renderMonthlyGraph(monthlyData)
-            });
-        e.preventDefault();
-        });
-    };
-
 
    function renderMonthlyGraph(monthlyData) {
 
-       const colors = {
+        const colors = {
         "happy": "#FFEEA8",
         "calm": "#D5E386",
         "sad": "#D9E8F5",

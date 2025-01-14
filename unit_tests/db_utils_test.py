@@ -140,12 +140,23 @@ class TestWebApp(unittest.TestCase):
         assert resp is 0
 
     def test_get_month_emotions(self):
-        expected_list = [0, 0, 1, 0, 0, 0]
+        expected_list =[{'name': 'happy', 'value': 0},
+ {'name': 'calm', 'value': 0},
+ {'name': 'sad', 'value': 0},
+ {'name': 'worried', 'value': 0},
+ {'name': 'frustrated', 'value': 1},
+ {'name': 'angry', 'value': 0}]
+
         resp = db_utils.get_month_emotions(1, 5, 2024)
         assert expected_list == resp
 
     def test_get_month_emotions_none(self):
-        expected_list = [0, 0, 0, 0, 0, 0]
+        expected_list = [{'name': 'happy', 'value': 0},
+ {'name': 'calm', 'value': 0},
+ {'name': 'sad', 'value': 0},
+ {'name': 'worried', 'value': 0},
+ {'name': 'frustrated', 'value': 0},
+ {'name': 'angry', 'value': 0}]
         resp = db_utils.get_month_emotions(1, 1, 2024)
         assert expected_list == resp
 

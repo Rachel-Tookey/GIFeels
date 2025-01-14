@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextMonthButton = document.getElementById('nextMonth');
     const statsTitle = document.querySelector('.overview p');
 
+
     let currentDate = new Date();
 
     let monthlyData = [];
@@ -62,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let day = 1; day <= daysInMonth; day++) {
             const dayDiv = document.createElement('div');
 
-            let date = String(year) + String(month + 1).padStart(2, '0') + String(day);
+            let date = String(year) + String(month + 1).padStart(2, '0') + String(day).padStart(2, '0');
             if (date in activeDates) {
 
                     const giphy = activeDates[date]['url'];
@@ -73,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
+                    dayDiv.className = activeDates[date]['color'];
                     dayDiv.appendChild(link);
 
                     const gif = document.createElement('img');
@@ -88,21 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     dayDiv.addEventListener('mouseenter', function() {
 
-                    document.body.style.backgroundColor = activeDates[date]['color'];
                     gif.style.maxWidth = '200px';
                     gif.style.display = "block";
                     gif.style.position = "absolute";
-
-                    matchingBar.style.boxShadow = '0 0 10px #ff9c78';
-
-
-
+                    document.body.style.backgroundColor = activeDates[date]['color'];
+                    dayDiv.style.boxShadow = '0 0 10px #7c6cac';
+                    matchingBar.style.boxShadow = '0 0 10px #7c6cac';
                     });
 
                     dayDiv.addEventListener('mouseleave', function() {
                     document.body.style.backgroundColor = '';
                     gif.style.display = "none";
                     matchingBar.style.boxShadow = '0 0 0px';
+                    dayDiv.style.boxShadow = '0 0 0px';
 
 
 
@@ -166,6 +166,27 @@ document.addEventListener('DOMContentLoaded', () => {
             bar.style.height = `${emotion.value * unitSize}px`;
             bar.style.backgroundColor = colors[emotion.name];
             bar.id = colors[emotion.name];
+
+            const collection = document.getElementsByClassName(colors[emotion.name]);
+
+            bar.addEventListener('mouseenter', function() {
+
+                    bar.style.boxShadow = '0 0 10px #7c6cac';
+                    document.body.style.backgroundColor = colors[emotion.name];
+                    for (let i = 0; i < collection.length; i++) {
+                        collection[i].style.boxShadow = '0 0 10px #7c6cac';
+                        }
+                    });
+
+                    bar.addEventListener('mouseleave', function() {
+                    document.body.style.backgroundColor = '';
+                    for (let i = 0; i < collection.length; i++) {
+                        collection[i].style.boxShadow = '0 0 0px';
+                        }
+                    bar.style.boxShadow = '0 0 0px';
+            });
+
+
 
             const barValue = document.createElement('div');
             barValue.className = 'bar-value';

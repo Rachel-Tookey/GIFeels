@@ -292,8 +292,8 @@ body {
 }
 
 .bar:hover {
-  background-color: #A77A01;
-  box-shadow: 0 0 10px #ff9c78;
+  background-color: ##7c6cac;
+  box-shadow: 0 0 10px #7c6cac;
   transform: scale(1.05);
 }
 

@@ -114,14 +114,21 @@ def get_month_emotions(user_id, month, year):
 
 
 def get_entry_dates_month(user_id, month, year):
-    date_list = []
+    colors = {
+        "happy": "#FFEEA8",
+        "calm": "#D5E386",
+        "sad": "#D9E8F5",
+        "worried": "#D9D9D9",
+        "frustrated": "#F2BDC7",
+        "angry": "#ff9c78"}
+    date_list = {}
     entries = Entries.query.filter(
         and_(Entries.user_id == user_id,
              extract('month', Entries.entry_date) == month,
              extract('year', Entries.entry_date) == year,
              ))
     for entry in entries:
-        date_list.append(entry.entry_date.strftime("%Y%m%d"))
+        date_list[entry.entry_date.strftime("%Y%m%d")] = colors[entry.emotion]
     return date_list
 
 

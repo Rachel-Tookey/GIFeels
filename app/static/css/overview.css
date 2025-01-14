@@ -217,13 +217,6 @@ body {
     height: auto; /* Ensures both elements have a consistent height */
 }
 
-.days p:hover {
-    color: #7E70AA;
-    text-decoration: underline;
-}
-
-
-
 .days a:hover {
     color: #7E70AA;
     text-decoration: underline;

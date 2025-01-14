@@ -4,8 +4,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const monthYearDisplay = document.getElementById('monthYear');
     const prevMonthButton = document.getElementById('prevMonth');
     const nextMonthButton = document.getElementById('nextMonth');
+    const statsTitle = document.querySelector('.overview p');
 
     let currentDate = new Date();
+
+    let monthlyData = [];
+
+    let activeDates = [];
+
+    function renderGraph() {
+        $(document).ready(function(){
+        $.ajax({
+          data : {
+            month : currentDate
+          },
+          type : 'POST',
+          url : '/overview'})
+        .done (function(data){
+            monthlyData = data.output;
+            activeDates = data.dates;
+            renderMonthlyGraph(monthlyData);
+            renderCalendar();
+            });
+        e.preventDefault();
+        });
+    };
+
+    renderGraph();
 
     function renderCalendar() {
         const year = currentDate.getFullYear();
@@ -16,10 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
         // Set the month and year in the header
-        monthYearDisplay.textContent = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        const monthAndYear = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        monthYearDisplay.textContent = monthAndYear;
+        statsTitle.textContent = "Your moods for " + monthAndYear;
+
 
         // Clear the previous days
         daysContainer.innerHTML = '';
+
 
         // Fill in the days of the month
         // Add empty divs for the days of the week before the start of the month
@@ -32,51 +61,82 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add the actual days of the month
         for (let day = 1; day <= daysInMonth; day++) {
             const dayDiv = document.createElement('div');
-            const link = document.createElement('a');
-            link.textContent = day;
-            link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            dayDiv.appendChild(link);
+
+            let date = String(year) + String(month + 1).padStart(2, '0') + String(day);
+            if (date in activeDates) {
+                    const link = document.createElement('a');
+                    link.textContent = day;
+                    link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    dayDiv.appendChild(link);
+                    dayDiv.style.backgroundColor = activeDates[date];
+            } else {
+                    const link = document.createElement('p');
+                    link.textContent = day;
+                    dayDiv.appendChild(link);
+            }
             daysContainer.appendChild(dayDiv);
         }
     }
 
-    function renderGraph() {
-        $(document).ready(function(){
-        $.ajax({
-          data : {
-            month : currentDate
-          },
-          type : 'POST',
-          url : '/overview'})
-        .done (function(data){
-        theChart.data.datasets[0].data = data.output;
-        theChart.options.title.text = data.label;
-        theChart.update();
-            });
-        e.preventDefault();
-        });
-    };
+
+    renderCalendar();
 
     function changeMonth(delta) {
         currentDate.setMonth(currentDate.getMonth() + delta);
-        renderCalendar();
         renderGraph();
     }
 
     prevMonthButton.addEventListener('click', () => changeMonth(-1));
     nextMonthButton.addEventListener('click', () => changeMonth(1));
 
-    renderCalendar();
 
-    renderGraph();
+   function renderMonthlyGraph(monthlyData) {
 
-    // Initial AJAX request for the current month
-    fetchDataForMonthYear(currentDate.getMonth() + 1, currentDate.getFullYear());
+        const colors = {
+        "happy": "#FFEEA8",
+        "calm": "#D5E386",
+        "sad": "#D9E8F5",
+        "worried": "#D9D9D9",
+        "frustrated": "#F2BDC7",
+        "angry": "#ff9c78"};
 
-    // Bind form submission to fetch data
-    $('#form').on('submit', function(e) {
-        e.preventDefault();
-        const selectedMonth = new Date($('#month').val());
-        fetchDataForMonthYear(selectedMonth.getMonth() + 1, selectedMonth.getFullYear());
+
+        const barsContainer = document.getElementById('bars');
+        barsContainer.innerHTML = ''; // Clear any existing bars
+
+        // Find the data for the current month
+        const currentMonthData = monthlyData;
+
+        constMaxVal = 0;
+
+        currentMonthData.forEach(emotion => {
+            if (constMaxVal < emotion.value) {
+                constMaxVal = emotion.value;
+
+            }
+
+         });
+
+        const unitSize = 250 / constMaxVal;
+
+
+        // Render the graph for the current month
+        currentMonthData.forEach(emotion => {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            bar.style.height = `${emotion.value * unitSize}px`; // Adjust height multiplier as needed
+
+            const barValue = document.createElement('div');
+            barValue.className = 'bar-value';
+            barValue.innerText = emotion.value;
+            bar.style.backgroundColor = colors[emotion.name];
+
+            bar.appendChild(barValue);
+            barsContainer.appendChild(bar);
+        });
+    }
+
+
+
+
     });
-});

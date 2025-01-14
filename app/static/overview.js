@@ -63,11 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const dayDiv = document.createElement('div');
 
             let date = String(year) + String(month + 1).padStart(2, '0') + String(day);
-            if (activeDates.includes(date)) {
+            if (date in activeDates) {
                     const link = document.createElement('a');
                     link.textContent = day;
                     link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     dayDiv.appendChild(link);
+                    dayDiv.style.backgroundColor = activeDates[date];
             } else {
                     const link = document.createElement('p');
                     link.textContent = day;

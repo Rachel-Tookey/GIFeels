@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let date = String(year) + String(month + 1).padStart(2, '0') + String(day);
             if (date in activeDates) {
 
-                    const giphy = 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzM1anp5b2N6YzNpaXBjNmg2Z2JiYnV1cmQ4YzMyaDVqa3dzcDQ1aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5K7ngCtszoxxbaBieC/giphy.gif';
+                    const giphy = activeDates[date]['url'];
 
                     const link = document.createElement('a');
 
@@ -82,11 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     gif.style.display = "none";
                     dayDiv.appendChild(gif);
 
-                    dayDiv.style.backgroundColor = activeDates[date];
+                    dayDiv.style.backgroundColor = activeDates[date]['color'];
 
 
                     dayDiv.addEventListener('mouseenter', function() {
-                    document.body.style.backgroundColor = activeDates[date];
+                    document.body.style.backgroundColor = activeDates[date]['color'];
 
                     gif.style.maxWidth = '200px';
 

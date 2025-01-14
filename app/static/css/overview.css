@@ -207,10 +207,22 @@ body {
     border: 1px dotted #7A5A01;
 }
 
-.days a {
+.days p, a {
     color: #A77A01;
     text-decoration: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block; /* Makes <p> behave like an inline element */
+    font-size: inherit; /* Ensures the font size remains the same for both */
+    height: auto; /* Ensures both elements have a consistent height */
 }
+
+.days p:hover {
+    color: #7E70AA;
+    text-decoration: underline;
+}
+
+
 
 .days a:hover {
     color: #7E70AA;

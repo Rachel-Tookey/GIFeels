@@ -132,7 +132,9 @@ def show_overview():
         if user_month:
             date_object = datetime.strptime(user_month, "%a %b %d %Y")
             emotion_list = get_month_emotions(session['user_id'], int(date_object.month), int(date_object.year))
-            return jsonify({'output': emotion_list})
+            date_list = get_entry_dates_month(session['user_id'], int(date_object.month), int(date_object.year))
+            print(date_list)
+            return jsonify({'output': emotion_list, 'dates': date_list})
     return render_template("overview.html")
 
 

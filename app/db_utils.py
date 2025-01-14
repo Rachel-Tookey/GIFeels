@@ -113,7 +113,16 @@ def get_month_emotions(user_id, month, year):
     return emotion_dict
 
 
-
+def get_entry_dates_month(user_id, month, year):
+    date_list = []
+    entries = Entries.query.filter(
+        and_(Entries.user_id == user_id,
+             extract('month', Entries.entry_date) == month,
+             extract('year', Entries.entry_date) == year,
+             ))
+    for entry in entries:
+        date_list.append(entry.entry_date.strftime("%Y%m%d"))
+    return date_list
 
 
 

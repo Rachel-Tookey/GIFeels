@@ -3,7 +3,7 @@ from app.api_utils import QuoteAPI, JokeAPI, MoodDict
 from app.forms.registration_form import RegistrationForm
 from flask import render_template, request, flash, redirect, session, url_for
 from datetime import datetime
-from app.date_utils import get_utc_date, get_month_name
+from app.date_utils import get_utc_date
 from functools import wraps
 from flask import Blueprint, jsonify, current_app
 from app.oauth_providers import googleOauth
@@ -132,7 +132,9 @@ def show_overview():
         if user_month:
             date_object = datetime.strptime(user_month, "%a %b %d %Y")
             emotion_list = get_month_emotions(session['user_id'], int(date_object.month), int(date_object.year))
-            return jsonify({'output': emotion_list, 'label': f'Your moods for {get_month_name(date_object)} {int(date_object.year)}...'})
+            date_list = get_entry_dates_month(session['user_id'], int(date_object.month), int(date_object.year))
+            print(date_list)
+            return jsonify({'output': emotion_list, 'dates': date_list})
     return render_template("overview.html")
 
 
@@ -140,6 +142,7 @@ def show_overview():
 @login_required
 def show_archive_by_date(date):
     user_entry = get_records(session['user_id'], date)
+
     if user_entry is None:
         flash_notification(f"No records saved on {date}")
         return redirect('/overview')
@@ -158,7 +161,7 @@ def show_archive_by_date(date):
 @main.route('/register', methods=['GET', 'POST'])
 def register_user():
     form = RegistrationForm(request.form)
-    if request.method == 'POST':
+    if form.validate_on_submit(): # change back to Post? 
         user_form = {}
         for item in ["FirstName", "LastName", "Username", "email", "password", "confirm", "accept_tos"]:
             user_form[item] = request.form.get(item)

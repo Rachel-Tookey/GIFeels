@@ -102,15 +102,34 @@ def get_emotion_count(user_id, emotion, month, year):
 
 
 def get_month_emotions(user_id, month, year):
-    emotion_count = []
-    emotion_list = ["angry", "calm", "frustrated", "happy", "sad", "worried"]
+    emotion_dict = []
+    emotion_list = ["happy", "calm", "sad", "worried", "frustrated", "angry"]
     for emotion in emotion_list:
+        emotion_count = {}
         count = get_emotion_count(user_id, emotion, month, year)
-        emotion_count.append(count)
-    return emotion_count
+        emotion_count['name'] = emotion
+        emotion_count['value'] = count
+        emotion_dict.append(emotion_count)
+    return emotion_dict
 
 
-
+def get_entry_dates_month(user_id, month, year):
+    colors = {
+        "happy": "#FFEEA8",
+        "calm": "#D5E386",
+        "sad": "#D9E8F5",
+        "worried": "#D9D9D9",
+        "frustrated": "#F2BDC7",
+        "angry": "#ff9c78"}
+    date_list = {}
+    entries = Entries.query.filter(
+        and_(Entries.user_id == user_id,
+             extract('month', Entries.entry_date) == month,
+             extract('year', Entries.entry_date) == year,
+             ))
+    for entry in entries:
+        date_list[entry.entry_date.strftime("%Y%m%d")] = colors[entry.emotion]
+    return date_list
 
 
 

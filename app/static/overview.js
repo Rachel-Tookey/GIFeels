@@ -64,11 +64,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let date = String(year) + String(month + 1).padStart(2, '0') + String(day);
             if (date in activeDates) {
+
+                    const giphy = activeDates[date]['url'];
+
                     const link = document.createElement('a');
+
                     link.textContent = day;
+
                     link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
                     dayDiv.appendChild(link);
-                    dayDiv.style.backgroundColor = activeDates[date];
+
+                    const gif = document.createElement('img');
+
+                    gif.src = giphy;
+
+                    gif.style.display = "none";
+                    dayDiv.appendChild(gif);
+
+                    dayDiv.style.backgroundColor = activeDates[date]['color'];
+                    const matchingBar = document.getElementById(activeDates[date]['color']);
+
+
+                    dayDiv.addEventListener('mouseenter', function() {
+
+                    document.body.style.backgroundColor = activeDates[date]['color'];
+                    gif.style.maxWidth = '200px';
+                    gif.style.display = "block";
+                    gif.style.position = "absolute";
+
+                    matchingBar.style.boxShadow = '0 0 10px #ff9c78';
+
+
+
+                    });
+
+                    dayDiv.addEventListener('mouseleave', function() {
+                    document.body.style.backgroundColor = '';
+                    gif.style.display = "none";
+                    matchingBar.style.boxShadow = '0 0 0px';
+
+
+
+        });
+
             } else {
                     const link = document.createElement('p');
                     link.textContent = day;
@@ -124,15 +163,19 @@ document.addEventListener('DOMContentLoaded', () => {
         currentMonthData.forEach(emotion => {
             const bar = document.createElement('div');
             bar.className = 'bar';
-            bar.style.height = `${emotion.value * unitSize}px`; // Adjust height multiplier as needed
+            bar.style.height = `${emotion.value * unitSize}px`;
+            bar.style.backgroundColor = colors[emotion.name];
+            bar.id = colors[emotion.name];
 
             const barValue = document.createElement('div');
             barValue.className = 'bar-value';
             barValue.innerText = emotion.value;
-            bar.style.backgroundColor = colors[emotion.name];
 
             bar.appendChild(barValue);
             barsContainer.appendChild(bar);
+
+
+
         });
     }
 

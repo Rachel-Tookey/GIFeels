@@ -128,7 +128,6 @@ def get_entry_dates_month(user_id, month, year):
              extract('year', Entries.entry_date) == year,
              ))
     for entry in entries:
-        print(entry.giphy_url)
         giphy_split = entry.giphy_url.split('.')
         if giphy_split[2][-2:] == 'v1':
             correct_url = giphy_split[0] + '.' + giphy_split[1] + '.' + giphy_split[2] + '.' + giphy_split[3] + '.gif'

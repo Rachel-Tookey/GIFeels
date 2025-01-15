@@ -84,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     gif.style.display = "none";
                     dayDiv.appendChild(gif);
                     dayDiv.style.backgroundColor = '#FFFFFF';
+                    dayDiv.style.border = '1px dotted #574000';
+
                     const matchingBar = document.getElementById(activeDates[date]['color']);
 
 

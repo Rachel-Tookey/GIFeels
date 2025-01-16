@@ -3,7 +3,7 @@ We have created a simple mood tracker to support mental health. On the homepage,
 
 This app is a Python-Flask app using MySQL for the database. The front-end uses Jinja, HTML, CSS and JavaScript
 
-## Project Structure: 
+### Project Structure: 
 
 ```mermaid
 flowchart LR
@@ -17,7 +17,9 @@ flowchart LR
     classDef cloud fill:#f0f0f0,stroke:#333,stroke-width:2px;
 ```
 
-# Entity Diagram 
+### Entity Diagram 
+
+The project uses Flask-SQLAlchemy to manage interactions with the database and as an Object Relational Mapper. The mapped classes (corresponding to database tables) are outlined below:
 
 ```mermaid
 erDiagram
@@ -61,12 +63,18 @@ erDiagram
 - A virtual environment on your IDE to install requirements from requirements.txt
 - MySQL Workbench for the database (or equivalent)
 - A developer API key from the [Giphy developers website](https://developers.giphy.com/)
-- Create an account with Google Cloud using their free trial and follow [this guide](/https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=3473162&sjid=2552074629382520305-EU) to generate the correct credentials for using Oauth. 
+- Create an account with Google Cloud using their free trial and follow [this guide](/https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=3473162&sjid=2552074629382520305-EU) to generate the correct credentials for using Oauth. The required app details are below: 
 
+| Field                       | Value                                                                                                  |
+|-----------------------------|--------------------------------------------------------------------------------------------------------|
+| App Name                    | GIFeels                                                                                                |
+| Test users                  | <your-email>                                                                                           |
+| Allowed JavaScript origins: | https://127.0.0.1:443, https://localhost:443                                                           |
+| Allowed redirect URIs       | https://127.0.0.1:443/authorize/google, https://localhost:443/authorize/google, https://127.0.0.1:443/ |
 
 ### Setup 
 
-> In a rush? Run the app without Google OAuth and skip step 3 below. You will need to change app.run on [run.py](/run.py) to `app.run(debug=True), host='0.0.0.0', port=5500)`. Please be aware certain endpoints related to OAuth will not function correctly. 
+> :bulb: **Tip:** In a rush? Run the app without Google OAuth and skip step 3 below. You will need to change app.run on [run.py](/run.py) to `app.run(debug=True), host='0.0.0.0', port=5500)`. Please be aware certain endpoints related to OAuth will not function correctly. 
 
 1. Create a new file at root level called .env. Copy and paste the template from [template_env](/template_env) and add your GIPHY API key, Google Auth Client Id, Key and Domain, MySQL user and password where indicated. (Using .env will keep your personal information secure)
 2. Create and activate a virtual environment, then install all requirements from [requirements.txt](/requirements.txt)
@@ -107,6 +115,17 @@ Password: password123
 2. Mock user who is registered only:\
 Username: LSmith\
 Password: hello123
+
+### Future Development 
+
+We are currently working on taking this app to deployment. Features currently in development to help us take this next step are: 
+- Expanding the modular structure using Flask Blueprints 
+- Adding in a rate limiter 
+- Cors policy 
+- Adding a privacy and service policy 
+- Adding in AI recommendations through the Google Gemini API 
+- Incorporating the use of sound 
+
 
 ### Developers
 

@@ -6,11 +6,11 @@ This app is a Python-Flask app using MySQL for the database. The front-end uses 
 ## Project Structure: 
 
 ```mermaid
-flowchart TD
+flowchart LR
       A[User]<--Collect data, show results-->B[Web Client - HTML, CSS, Jinja, Javascript & Ajax];
       B[Web Client - HTML, CSS, Jinja, Javascript & Ajax]<--HTTP Request / Response in JSON / HTTP-->C[Server -API Endpoints with Python-Flask];
       C[Server - API Endpoints with Python-Flask]<--CRUD Operations using SQLAlchemy-->D[(MySQL Database)];
-      C[Server - Web Client]<--GET Request / Response-->E[External APIs - Giphy, Gemini, icanhazdadjoke, Zen Quotes];
+      C[Server - API Endpoints with Python-Flask]<--GET Request / Response-->E[External APIs - Giphy, Gemini, icanhazdadjoke, Zen Quotes];
     
     class E cloud;
     

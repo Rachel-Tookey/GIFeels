@@ -12,6 +12,7 @@ This app is built with MySQL, Python and Flask for the back-end. The front-end i
       B-->D;
       C-->D;
 ```
+
 ```mermaid
 erDiagram
     CUSTOMER ||--o{ ORDER : places

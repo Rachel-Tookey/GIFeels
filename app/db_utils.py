@@ -136,5 +136,3 @@ def get_entry_dates_month(user_id, month, year):
         date_list[entry.entry_date.strftime("%Y%m%d")] = {'color': colors[entry.emotion], 'url': correct_url}
     return date_list
 
-
-

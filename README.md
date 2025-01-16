@@ -1,5 +1,5 @@
 ## 🥹 Welcome To GIFeels 🥹
-We have created a simple mood tracker to support mental health. On the homepage, the user is invited to select the gif that best represents their mood. Then they are taken to a page offering them a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
+We have created a simple mood tracker to support mental health. On the homepage, the user is invited to select the gif that best represents their mood. Once selected, they are offered a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
 
 If they select save, they will be invited to log in (or register). Once logged in, they can save their mood and joke/quote. They will be invited to journal their thoughts for the day and save them. After saving, they will be shown their overview for the month, giving a summary of their emotions and letting them view entries for individual days. 
 

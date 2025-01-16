@@ -1,16 +1,20 @@
-## 🥹Welcome To GIFeels 🥹
-We have created a simple mood tracker to support mental health. As a guest you can see an inspirational quote or joke to improve your mindset. As a registered user you can log your moods, enter your thoughts in a journal and save your favourite jokes or quotes. You are also able to see a monthly overview of how you have been feeling.
+## 🥹 Welcome To GIFeels 🥹
+We have created a simple mood tracker to support mental health. On the homepage, the user is invited to select the gif that best represents their mood. Then they are taken to a page offering them a choice between an inspirational quote or joke to improve their mindset. They are then given the option to save this. If they select save, they will be invited to log in (or register). Once logged in, they can save their mood and joke/quote. They will be invited to journal their thoughts for the day and save them. After saving, they will be shown their overview for the month, giving a summary of their emotions and letting them view entries for individual days. 
 
-This app is built with MySQL, Python and Flask for the back-end. The front-end is built using Jinja, HTML, CSS and JavaScript
+This app is a Python-Flask app using MySQL for the database. The front-end uses Jinja, HTML, CSS and JavaScript
 
 ## Project Structure: 
 
 ```mermaid
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;
+flowchart TD
+      A[User]<--Collect data, show results-->B[Web Client - HTML, CSS, Jinja, Javascript & Ajax];
+      B[Web Client - HTML, CSS, Jinja, Javascript & Ajax]<--HTTP Request / Response in JSON / HTTP-->C[Server -API Endpoints with Python-Flask];
+      C[Server - API Endpoints with Python-Flask]<--CRUD Operations using SQLAlchemy-->D[(MySQL Database)];
+      C[Server - Web Client]<--GET Request / Response-->E[External APIs - Giphy, Gemini, icanhazdadjoke, Zen Quotes];
+    
+    class E cloud;
+    
+    classDef cloud fill:#f0f0f0,stroke:#333,stroke-width:2px;
 ```
 
 ```mermaid

@@ -17,11 +17,43 @@ flowchart LR
     classDef cloud fill:#f0f0f0,stroke:#333,stroke-width:2px;
 ```
 
+# Entity Diagram 
+
 ```mermaid
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE-ITEM : contains
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+    a[LocalUser] {
+        int id PK
+        int user_id FK
+        string first_name
+        string family_name
+        string password
+        bool accept_tos 
+    }
+    LocalUser ||--o{ User : is
+    b[AuthUser] {
+        int id PK
+        int user_id FK
+        int auth0_id
+        string name
+        bool accept_tos 
+    }
+    Auth ||--o{ User : is
+    c[User] {
+        int id PK 
+        string username
+        string email
+    }
+    d[Entries] {
+        int id PK
+        int user_id FK
+        Date entry_date
+        string emotion
+        string giphy_url
+        string choice 
+        string content
+        string diary_entry
+    }
+    User ||--o{ Entries : makes 
 ```
 
 ### You will need:
@@ -34,7 +66,7 @@ erDiagram
 
 ### Setup 
 
-In a rush? Run the app without Google OAuth and skip step 3 below. You will need to change app.run on [run.py](/run.py) to `app.run(debug=True), host='0.0.0.0', port=5500)`. Please be aware certain endpoints related to OAuth will not function correctly. 
+> In a rush? Run the app without Google OAuth and skip step 3 below. You will need to change app.run on [run.py](/run.py) to `app.run(debug=True), host='0.0.0.0', port=5500)`. Please be aware certain endpoints related to OAuth will not function correctly. 
 
 1. Create a new file at root level called .env. Copy and paste the template from [template_env](/template_env) and add your GIPHY API key, Google Auth Client Id, Key and Domain, MySQL user and password where indicated. (Using .env will keep your personal information secure)
 2. Create and activate a virtual environment, then install all requirements from [requirements.txt](/requirements.txt)
@@ -55,6 +87,7 @@ In a rush? Run the app without Google OAuth and skip step 3 below. You will need
 6. Run [run.py](/run.py) to launch the app 
 
 ### Running the app
+
 By running app.py in your IDE you will be able to launch https://127.0.0.1:443 (or http://127.0.0.1:5500 if not using HTTPS) and go to the homepage of the app.
 
 Please note: the front-end design has been optimised for Google Chrome Browser and for the best experience, we'd recommend using this.
@@ -66,9 +99,11 @@ You are able to visit the pages without logging into the app, however this will 
 You can login as one of the mock users created, or register your own user following the instructions on screen.
 
 ### Mock users credentials
+
 1. Mock user who is registered and has database entries from 01/05/2024 to 13/06/2024:\
 Username: JoDoe\
 Password: password123
+
 2. Mock user who is registered only:\
 Username: LSmith\
 Password: hello123

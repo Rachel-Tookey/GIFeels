@@ -152,11 +152,11 @@ class TestWebApp(unittest.TestCase):
 
     def test_get_month_emotions_none(self):
         expected_list = [{'name': 'happy', 'value': 0},
- {'name': 'calm', 'value': 0},
- {'name': 'sad', 'value': 0},
- {'name': 'worried', 'value': 0},
- {'name': 'frustrated', 'value': 0},
- {'name': 'angry', 'value': 0}]
+                         {'name': 'calm', 'value': 0},
+                         {'name': 'sad', 'value': 0},
+                         {'name': 'worried', 'value': 0},
+                         {'name': 'frustrated', 'value': 0},
+                         {'name': 'angry', 'value': 0}]
         resp = db_utils.get_month_emotions(1, 1, 2024)
         assert expected_list == resp
 

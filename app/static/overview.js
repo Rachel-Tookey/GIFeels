@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextMonthButton = document.getElementById('nextMonth');
     const statsTitle = document.querySelector('.overview p');
 
-
     let currentDate = new Date();
 
     let monthlyData = [];
@@ -71,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const link = document.createElement('a');
 
                     link.textContent = day;
+                    link.color = '#ffffff';
 
                     link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
@@ -83,13 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     gif.style.display = "none";
                     dayDiv.appendChild(gif);
+                    dayDiv.style.backgroundColor = '#FFFFFF';
+                    dayDiv.style.border = '1px dotted #574000';
 
-                    dayDiv.style.backgroundColor = activeDates[date]['color'];
                     const matchingBar = document.getElementById(activeDates[date]['color']);
 
 
                     dayDiv.addEventListener('mouseenter', function() {
-
+                    dayDiv.style.backgroundColor = activeDates[date]['color'];
                     gif.style.maxWidth = '200px';
                     gif.style.display = "block";
                     gif.style.position = "absolute";
@@ -99,23 +100,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     dayDiv.addEventListener('mouseleave', function() {
+                    dayDiv.style.backgroundColor = '#FFFFFF';
                     document.body.style.backgroundColor = '';
                     gif.style.display = "none";
                     matchingBar.style.boxShadow = '0 0 0px';
                     dayDiv.style.boxShadow = '0 0 0px';
-
-
-
-        });
+                            });
 
             } else {
                     const link = document.createElement('p');
                     link.textContent = day;
+                    dayDiv.style.backgroundColor =  '#f2f2f2';
+                    link.style.color = '#c2c2c2';
                     dayDiv.appendChild(link);
             }
             daysContainer.appendChild(dayDiv);
         }
-    }
+    };
+
 
 
     renderCalendar();
@@ -174,14 +176,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     bar.style.boxShadow = '0 0 10px #7c6cac';
                     document.body.style.backgroundColor = colors[emotion.name];
                     for (let i = 0; i < collection.length; i++) {
+                        collection[i].style.backgroundColor = colors[emotion.name];
                         collection[i].style.boxShadow = '0 0 10px #7c6cac';
+                        const child = collection[i].querySelector('img');
+                        child.style.maxWidth = '50px';
+                        child.style.display = "block";
+                        child.style.position = "absolute";
                         }
                     });
 
                     bar.addEventListener('mouseleave', function() {
                     document.body.style.backgroundColor = '';
                     for (let i = 0; i < collection.length; i++) {
+                        collection[i].style.backgroundColor = '#FFFFFF';
                         collection[i].style.boxShadow = '0 0 0px';
+                        const child = collection[i].querySelector('img');
+                        child.style.display = "none";
+
                         }
                     bar.style.boxShadow = '0 0 0px';
             });
@@ -199,6 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
     }
+
+
+
 
 
 

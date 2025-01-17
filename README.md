@@ -1,6 +1,6 @@
 ## 🥹 Welcome To GIFeels 🥹
 
-GIFeels is a mood tracker web app. It is built using Python-Flask app, MySQL, Jinja, HTML, CSS and JavaScript, and integrates 3 external APIs. 
+GIFeels is a mood tracker web app. It is built using Python-Flask, MySQL, Jinja, HTML, CSS and JavaScript, and integrates 3 external APIs. 
 
 On the homepage, the user is invited to select the gif that best represents their mood. Once selected, they are offered a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
 

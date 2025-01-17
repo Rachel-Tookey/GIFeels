@@ -1,9 +1,10 @@
 ## 🥹 Welcome To GIFeels 🥹
-We have created a simple mood tracker to support mental health. On the homepage, the user is invited to select the gif that best represents their mood. Once selected, they are offered a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
 
-If they select save, they will be invited to log in (or register). Once logged in, they can save their mood and joke/quote. They will be invited to journal their thoughts for the day and save them. After saving, they will be shown their overview for the month, giving a summary of their emotions and letting them view entries for individual days. 
+GIFeels is a mood tracker web app, built using Python-Flask app, MySQL, Jinja, HTML, CSS and JavaScript.
 
-This app is a Python-Flask app using MySQL for the database. The front-end uses Jinja, HTML, CSS and JavaScript
+On the homepage, the user is invited to select the gif that best represents their mood. Once selected, they are offered a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
+
+If they select save, they will be invited to log in (or register). Once logged in, they can save their mood and joke/quote. They will then be invited to journal their thoughts for the day and save them. After saving, they will be shown their overview for the month, giving a summary of their emotions and letting them view entries for individual days. 
 
 <br> 
 
@@ -145,6 +146,12 @@ Password: hello123
 
 ## Features
 
+| Feature                       | Image                                                                                                  |
+|-----------------------------|--------------------------------------------------------------------------------------------------------|
+| App Name                    | GIFeels                                                                                                |
+| Test users                  | `your-email`                                                                                           |
+| Allowed JavaScript origins: | https://127.0.0.1:443, https://localhost:443                                                           |
+| Allowed redirect URIs       | https://127.0.0.1:443/authorize/google, https://localhost:443/authorize/google, https://127.0.0.1:443/ |
 
 
 <br> 

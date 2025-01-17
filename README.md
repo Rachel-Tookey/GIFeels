@@ -176,7 +176,7 @@ We are currently working on taking this app to deployment. Features currently in
 
 ## Developers
 
-This project was initially created on the Code First Girls CFGDegree with the below developers. [@Rachel-Tookey] (https://www.github.com/Rachel-Tookey) and [@Fabi-P] (https://www.github.com/Fabi-P) forked off the initial repo and have continued development, implementing a modular code software, ORMs with SQLalchemy, OAuth and interactive web elements with Javascript. 
+This project was initially created on the Code First Girls CFGDegree with the below developers. [@Rachel-Tookey](https://www.github.com/Rachel-Tookey) and [@Fabi-P](https://www.github.com/Fabi-P) forked off the initial repo and have continued development, implementing a modular code software, ORMs with SQLalchemy, OAuth and interactive web elements with Javascript. 
 
 Laura: https://github.com/Laura-Kam \
 Fabi: https://github.com/Fabi-P \

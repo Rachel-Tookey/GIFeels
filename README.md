@@ -43,7 +43,7 @@ erDiagram
         string name
         bool accept_tos 
     }
-    Auth ||--o{ User : is
+    AuthUser ||--o{ User : is
     c[User] {
         int id PK 
         string username

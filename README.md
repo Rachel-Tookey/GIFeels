@@ -146,12 +146,17 @@ Password: hello123
 
 ## Features
 
-| Feature                       | Image                                                                                                  |
-|-----------------------------|--------------------------------------------------------------------------------------------------------|
-| App Name                    | GIFeels                                                                                                |
-| Test users                  | `your-email`                                                                                           |
-| Allowed JavaScript origins: | https://127.0.0.1:443, https://localhost:443                                                           |
-| Allowed redirect URIs       | https://127.0.0.1:443/authorize/google, https://localhost:443/authorize/google, https://127.0.0.1:443/ |
+| Feature                                                            | Image                                                                                                  |
+|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| Authentication decorator on restricted endpoints                   | Wrapper decorator                                                                                                |
+| OAuth with Google                  | OAuth image                                                                                         |
+| Overview page with bar graph and calendar linking to journal entries               | Overview image                                                                                         |
+| Previous selected GIFs displayed on mouse hover on calendar dates | GIF display                                                           |
+| Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph      | GIF display massive |
+| On archive page, user can dynamically update journal entry   | Journal entry |
+| Complete suite of unit tests, including in memory database using SQLite for database tests | Database tests |
+| Database migration with Flask-Migrate | Flask-migrate image |
+| Rate limiter with REDIS | Rate limiter image |
 
 
 <br> 
@@ -170,6 +175,8 @@ We are currently working on taking this app to deployment. Features currently in
 
 
 ## Developers
+
+This project was initially created on the Code First Girls CFGDegree with the below developers. [@Rachel-Tookey] (https://www.github.com/Rachel-Tookey) and [@Fabi-P] (https://www.github.com/Fabi-P) forked off the initial repo and have continued development, implementing a modular code software, ORMs with SQLalchemy, OAuth and interactive web elements with Javascript. 
 
 Laura: https://github.com/Laura-Kam \
 Fabi: https://github.com/Fabi-P \

@@ -4,11 +4,13 @@ from flask_migrate import Migrate
 from authlib.integrations.flask_client import OAuth
 from flask_bcrypt import Bcrypt
 from settings import Config
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 db = SQLAlchemy()
 oauth = OAuth()
 bcrypt = Bcrypt()
-
+limiter = Limiter(get_remote_address)
 
 def create_app(config_class=Config, test_config=None):
 
@@ -26,6 +28,8 @@ def create_app(config_class=Config, test_config=None):
     db.init_app(app)
     oauth.init_app(app)
     bcrypt.init_app(app)
+    limiter.init_app(app)
+
 
     Migrate(app, db)
 

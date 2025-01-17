@@ -82,7 +82,7 @@ erDiagram
 <br> 
 
 
-> :bulb: **Tip:** In a rush? Run the app without Google OAuth and skip step 3 in the set-up below.
+> :bulb: **In a rush?** Run the app without Google OAuth and skip step 3 in the set-up below.
 > You will need to change app.run on [run.py](/run.py) to `app.run(debug=True), host='0.0.0.0', port=5500)`. Please note certain endpoints related to OAuth will not function correctly. 
 
 

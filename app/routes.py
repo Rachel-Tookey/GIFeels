@@ -44,7 +44,8 @@ def error_handler(error):
     flash_error("Something went wrong. Please try again later")
     if request.path == "/":
         return render_template("disaster.html")
-    elif request.referrer:
+    flash_error("Something went wrong. Please try again later")
+    if request.referrer:
         return redirect(request.referrer)
     return redirect('/')
 

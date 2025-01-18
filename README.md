@@ -71,6 +71,12 @@ erDiagram
 
 
 - A virtual environment on your IDE to install requirements from requirements.txt
+- Install and activate Redis server using the following commands (for Homebrew):
+
+`brew install redis`
+
+`brew services start redis`
+
 - MySQL Workbench for the database (or equivalent)
 - A developer API key from the [Giphy developers website](https://developers.giphy.com/)
 - Create an account with Google Cloud using their free trial and follow [this guide](/https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=3473162&sjid=2552074629382520305-EU) to generate the correct credentials for using Oauth. The required app details are below: 

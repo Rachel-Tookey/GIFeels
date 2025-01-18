@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             url: currentLocation,
             type: 'DELETE',
             success: function (result) {
-                window.location.href = "url_for(show_overview)";
+                window.location.href = "/overview";
             }
         });
     };

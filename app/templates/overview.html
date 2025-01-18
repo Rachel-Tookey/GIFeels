@@ -58,7 +58,6 @@
 {% endblock %}
 {% block script %}
 <!-- Calendar JavaScript -->
-<script src="../static/overview.js"></script>
 <script>
     var csrf_token = "{{ csrf_token() }}";
 
@@ -72,4 +71,6 @@
 
 
 </script>
+    <script src="../static/overview.js"></script>
+
 {% endblock %}

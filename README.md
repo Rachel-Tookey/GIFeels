@@ -2,6 +2,8 @@
 
 GIFeels is a mood tracker web app. It is built using Python-Flask, MySQL, Jinja, HTML, CSS and JavaScript, and integrates 3 external APIs. 
 
+## User Stories
+
 On the homepage, the user is invited to select the gif that best represents their mood. Once selected, they are offered a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
 
 If they select save, they will be invited to log in (or register). Once logged in, they can save their mood and joke/quote. They will then be invited to journal their thoughts for the day and save them. After saving, they will be shown their overview for the month, giving a summary of their emotions and letting them view entries for individual days. 
@@ -148,15 +150,15 @@ Password: hello123
 
 | Feature                                                            | Image                                                                                                  |
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| Authentication decorator on restricted endpoints                   | Wrapper decorator                                                                                                |
-| OAuth with Google                  | OAuth image                                                                                         |
+| OAuth with Google                  | ![OAuth with Google](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/OAuth%20with%20Google.png)   |
 | Overview page with bar graph and calendar linking to journal entries               | Overview image                                                                                         |
 | Previous selected GIFs displayed on mouse hover on calendar dates | GIF display                                                           |
 | Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph      | GIF display massive |
-| On archive page, user can dynamically update journal entry   | Journal entry |
+| On archive page, user can dynamically update journal entry   | ![Dynamically update journal entry](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Dynamically%20update%20journal%20entry.png)|
 | Complete suite of unit tests, including in memory database using SQLite for database tests | Database tests |
 | Database migration with Flask-Migrate | Flask-migrate image |
 | Rate limiter with REDIS | Rate limiter image |
+| Authentication decorator on restricted endpoints                   | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Decorator%20for%20authentication%20required.png)  |
 
 
 <br> 

@@ -173,7 +173,6 @@ Password: hello123
 
 We are currently working on taking this app to deployment. Features currently in development to help us take this next step are: 
 - Expanding the modular structure using Flask Blueprints
-- CSRF protections
 - Privacy and service policy with links in footer
 - AI recommendations through the Google Gemini API 
 - Incorporating the use of sound 

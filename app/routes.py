@@ -1,14 +1,13 @@
 from app.db_utils import *
 from app.api_utils import QuoteAPI, JokeAPI, MoodDict
 from app.forms.registration_form import RegistrationForm
-from flask import render_template, request, flash, redirect, session, url_for
+from flask import render_template, request, flash, redirect, session, url_for, Blueprint, jsonify, current_app
 from datetime import datetime
 from app.date_utils import get_utc_date
 from functools import wraps
-from flask import Blueprint, jsonify, current_app
 from app.oauth_providers import googleOauth
-from app import bcrypt, limiter
-
+from app import bcrypt
+from werkzeug.exceptions import HTTPException
 
 main = Blueprint('main', __name__)
 
@@ -33,17 +32,23 @@ def login_required(f):
     return wrap
 
 
+@main.errorhandler(429)
+def error_handler(error):
+    current_app.logger.error(f"Error occurred at route: {request.path} (method: {request.method}) - Error: {error}")
+    return render_template("429error.html")
+
+
 @main.errorhandler(Exception)
 def error_handler(error):
     current_app.logger.error(f"Error occurred at route: {request.path} (method: {request.method}) - Error: {error}")
-    if error.code == 429:
-        return render_template("429error.html")
-    elif request.path == "/":
+    flash_error("Something went wrong. Please try again later")
+    if request.path == "/":
         return render_template("disaster.html")
     flash_error("Something went wrong. Please try again later")
     if request.referrer:
         return redirect(request.referrer)
     return redirect('/')
+
 
 
 @main.route('/', methods=['GET'])
@@ -166,23 +171,16 @@ def show_archive_by_date(date):
 @main.route('/register', methods=['GET', 'POST'])
 def register_user():
     form = RegistrationForm(request.form)
-    if form.validate_on_submit(): # change back to Post? 
+    if form.validate_on_submit():
         user_form = {}
-        for item in ["FirstName", "LastName", "Username", "email", "password", "confirm", "accept_tos"]:
+        for item in ["firstname", "lastname", "uname", "email", "password", "confirm", "accept_tos"]:
             user_form[item] = request.form.get(item)
-        if user_form['password'] != user_form['confirm']:
-            flash_error('Password and Password Confirmation do not match')
-        elif check_email_exists(user_form['email']):
-            flash_error('Email already registered')
-        elif check_username_exists(user_form['Username']):
-            flash_error('Username already in use')
-        else:
-            user_form['password'] = bcrypt.generate_password_hash(user_form['password']).decode('utf-8')
-            add_new_global_user(user_form['email'], user_form['Username'])
-            user_id = get_user_id_by_email(user_form["email"])
-            add_new_local_user(user_id, user_form)
-            flash_notification("Your account has been created. Please login.")
-            return redirect('/login')
+        user_form['password'] = bcrypt.generate_password_hash(user_form['password']).decode('utf-8')
+        add_new_global_user(user_form['email'], user_form['uname'])
+        user_id = get_user_id_by_email(user_form["email"])
+        add_new_local_user(user_id, user_form)
+        flash_notification("Your account has been created. Please login.")
+        return redirect('/login')
     return render_template("register.html", form=form)
 
 

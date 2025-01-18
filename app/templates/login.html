@@ -3,6 +3,7 @@
 {% endblock %}{% block main %}
 <div class="login-wrapper">
     <form method="POST" action="">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <h1>welcome home.</h1>
         <div class="input-box">
             <input type="text" placeholder="Username" name="uname" required>

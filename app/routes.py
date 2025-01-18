@@ -7,9 +7,11 @@ from app.date_utils import get_utc_date
 from functools import wraps
 from flask import Blueprint, jsonify, current_app
 from app.oauth_providers import googleOauth
-from app import bcrypt
+from app import bcrypt, limiter
+
 
 main = Blueprint('main', __name__)
+
 
 def flash_error(error):
     session.pop('_flashes', None)
@@ -35,7 +37,11 @@ def login_required(f):
 def error_handler(error):
     current_app.logger.error(f"Error occurred at route: {request.path} (method: {request.method}) - Error: {error}")
     flash_error("Something went wrong. Please try again later")
-    if request.referrer:
+    if error.code == 429:
+        return render_template("429error.html")
+    elif request.path == "/":
+        return render_template("disaster.html")
+    elif request.referrer:
         return redirect(request.referrer)
     return redirect('/')
 

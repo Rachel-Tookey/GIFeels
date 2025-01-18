@@ -36,12 +36,12 @@ def login_required(f):
 @main.errorhandler(Exception)
 def error_handler(error):
     current_app.logger.error(f"Error occurred at route: {request.path} (method: {request.method}) - Error: {error}")
-    flash_error("Something went wrong. Please try again later")
     if error.code == 429:
         return render_template("429error.html")
     elif request.path == "/":
         return render_template("disaster.html")
-    elif request.referrer:
+    flash_error("Something went wrong. Please try again later")
+    if request.referrer:
         return redirect(request.referrer)
     return redirect('/')
 

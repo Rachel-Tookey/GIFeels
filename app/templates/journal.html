@@ -18,6 +18,7 @@ styles -%}<link rel="stylesheet" href="../static/css/journal-page.css" />
   </div>
   <div class="form-floating">
     <form method="POST" id="journal_form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
       <textarea
         name="textarea"
         class="form-control"

@@ -13,6 +13,8 @@ class Config:
 
     SESSION_COOKIE_SECURE=True
 
-    SESSION_COOKIE_SAMESITE='Lax'
-
     SQLALCHEMY_DATABASE_URI=os.getenv('CONNECTION_STRING')
+
+    RATELIMIT_STORAGE_URI = "redis://127.0.0.1:6379"
+    RATELIMIT_STORAGE_OPTIONS = {"socket_connect_timeout": 30}
+    RATELIMIT_DEFAULT = "100 per day"

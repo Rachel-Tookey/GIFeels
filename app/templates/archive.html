@@ -57,9 +57,9 @@
 
 {%- endblock %}
 {% block script %}
-<!-- Delete JavaScript -->
-<script src="{{ url_for('static', filename='archive.js') }}"></script>
+
 <script>
+
     var csrf_token = "{{ csrf_token() }}";
 
     $.ajaxSetup({
@@ -71,5 +71,8 @@
     });
 
 
+
 </script>
+<script src="{{ url_for('static', filename='archive.js') }}"></script>
+
 {% endblock %}

@@ -158,11 +158,11 @@ def show_archive_by_date(date):
     record = {'emotion': user_entry.emotion, 'gif_url': user_entry.giphy_url, 'choice': user_entry.choice, 'quote_joke': user_entry.content,
               'diary': f"Click to add a diary entry for {date}!" if user_entry.diary_entry is None else user_entry.diary_entry}
 
-    if request.method == 'DELETE':
-        delete_entry(user_id=session['user_id'], date=date)
-
     if request.method == 'PUT':
         add_journal(request.form.get('content'), session['user_id'], date)
+
+    if request.method == 'DELETE':
+        delete_entry(user_id=session['user_id'], date=date)
 
     return render_template("archive.html", date=date, record=record)
 
@@ -236,4 +236,12 @@ def user_logout():
     flash_notification("You have been logged out. See you soon!")
     return redirect('/')
 
+@main.route('/privacy')
+def privacy():
+    session.clear()
+    return render_template("privacy.html")
 
+@main.route('/service')
+def service():
+    session.clear()
+    return render_template("service.html")

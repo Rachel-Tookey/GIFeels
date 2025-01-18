@@ -163,7 +163,7 @@ Password: hello123
 | On archive page, user can dynamically update journal entry. This is saved using an AJAX.   | ![Dynamically update journal entry](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Dynamically%20update%20journal%20entry.png)|
 | Complete suite of unit tests, including in memory database using SQLite for database tests | ![Database-Tests](https://github.com/Rachel-Tookey/GIFeels/blob/562df426c343372ce83538fcefa3d28de71975d2/project_images/Database%20unit%20tests.png) |
 | Database migration with Flask-Migrate | ![Flask-Migrate](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Flask%20migrate.png) |
-| Rate limiter with REDIS | ![Redis rate limiter](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Rate%20limiter.png)  |
+| Rate limiter with REDIS | ![Redis rate limiter](https://github.com/Rachel-Tookey/GIFeels/blob/8e3307afc64b441ef2134d015828db966d3cbb65/project_images/Rate%20limiter%20settings.png)  |
 | Authentication decorator on restricted endpoints | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Decorator%20for%20authentication%20required.png)  |
 
 

@@ -150,15 +150,15 @@ Password: hello123
 
 | Feature                                                            | Image                                                                                                  |
 |--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| OAuth with Google                  | ![OAuth with Google](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/OAuth%20with%20Google.png)   |
-| Overview page with bar graph and calendar linking to journal entries               | Overview image                                                                                         |
-| Previous selected GIFs displayed on mouse hover on calendar dates | GIF display                                                           |
-| Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph      | GIF display massive |
+| OAuth with Google | ![OAuth with Google](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/OAuth%20with%20Google.png)   |
+| Overview page with bar graph & calendar linking to journal entries | ![Graph & calendar page](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Dynamically%20updated%20graph%20and%20calendar.png)  |
+| Previous selected GIFs displayed on mouse hover on calendar dates |   ![Gif Hover Display](https://github.com/Rachel-Tookey/GIFeels/blob/2fe123d5b0fa3c1d8a7e714b006d9f7950edc1b2/project_images/GIF%20displayed%20on%20mouse%20hover.png)  |
+| Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph | ![Colour coded calendar entries](https://github.com/Rachel-Tookey/GIFeels/blob/67f390b848cbfbfc404c07491808967cd25ceb66/project_images/Mood%20displayed%20on%20mouse%20hover%20-%20pink.png) |
 | On archive page, user can dynamically update journal entry   | ![Dynamically update journal entry](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Dynamically%20update%20journal%20entry.png)|
-| Complete suite of unit tests, including in memory database using SQLite for database tests | Database tests |
-| Database migration with Flask-Migrate | Flask-migrate image |
-| Rate limiter with REDIS | Rate limiter image |
-| Authentication decorator on restricted endpoints                   | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Decorator%20for%20authentication%20required.png)  |
+| Complete suite of unit tests, including in memory database using SQLite for database tests | ![Database-Tests](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Database%20testing.png) |
+| Database migration with Flask-Migrate | ![Flask-Migrate](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Flask%20migrate.png) |
+| Rate limiter with REDIS | ![Redis rate limiter](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Rate%20limiter.png)  |
+| Authentication decorator on restricted endpoints | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Decorator%20for%20authentication%20required.png)  |
 
 
 <br> 

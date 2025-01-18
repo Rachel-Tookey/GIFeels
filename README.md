@@ -153,7 +153,7 @@ Password: hello123
 | OAuth with Google | ![OAuth with Google](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/OAuth%20with%20Google.png)   |
 | Overview page with bar graph & calendar linking to journal entries | ![Graph & calendar page](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Dynamically%20updated%20graph%20and%20calendar.png)  |
 | Previous selected GIFs displayed on mouse hover on calendar dates |   ![Gif Hover Display](https://github.com/Rachel-Tookey/GIFeels/blob/feaaed37f98a3531165777eabd727438ff6e192c/project_images/Mouse%20hover%20displays%20GIF.png)  |
-| Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph | ![Colour coded calendar entries](https://github.com/Rachel-Tookey/GIFeels/blob/67f390b848cbfbfc404c07491808967cd25ceb66/project_images/Mood%20displayed%20on%20mouse%20hover%20-%20pink.png) |
+| Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph | ![Colour coded calendar entries](https://github.com/Rachel-Tookey/GIFeels/blob/399316a3721873b8a0c7b41fa761bce7516ca0b5/project_images/GIFs%20%26%20moods%20displayed%20on%20mouse%20hover%20-%20bar%20chart.png) |
 | On archive page, user can dynamically update journal entry   | ![Dynamically update journal entry](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Dynamically%20update%20journal%20entry.png)|
 | Complete suite of unit tests, including in memory database using SQLite for database tests | ![Database-Tests](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Database%20testing.png) |
 | Database migration with Flask-Migrate | ![Flask-Migrate](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Flask%20migrate.png) |
@@ -167,10 +167,9 @@ Password: hello123
 
 We are currently working on taking this app to deployment. Features currently in development to help us take this next step are: 
 - Expanding the modular structure using Flask Blueprints 
-- Adding in a rate limiter 
 - Cors policy 
-- Adding a privacy and service policy 
-- Adding in AI recommendations through the Google Gemini API 
+- Privacy and service policy 
+- AI recommendations through the Google Gemini API 
 - Incorporating the use of sound 
 
 <br> 

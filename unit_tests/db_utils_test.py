@@ -15,8 +15,7 @@ class TestWebApp(unittest.TestCase):
         config_override = {
             'TESTING': True,
             'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',
-            'WTF_CSRF_ENABLED': False,
-            'SECRET_KEY' : 'test_key'
+            'SECRET_KEY': 'test_key'
         }
 
         self.app = create_app(test_config=config_override)

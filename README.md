@@ -1,9 +1,12 @@
 ## 🥹 Welcome To GIFeels 🥹
-We have created a simple mood tracker to support mental health. On the homepage, the user is invited to select the gif that best represents their mood. Once selected, they are offered a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
 
-If they select save, they will be invited to log in (or register). Once logged in, they can save their mood and joke/quote. They will be invited to journal their thoughts for the day and save them. After saving, they will be shown their overview for the month, giving a summary of their emotions and letting them view entries for individual days. 
+GIFeels is a mood tracker web app. It is built using Python-Flask, MySQL, Jinja, HTML, CSS and JavaScript, and integrates 3 external APIs. 
 
-This app is a Python-Flask app using MySQL for the database. The front-end uses Jinja, HTML, CSS and JavaScript
+## User Stories
+
+On the homepage, the user is invited to select the gif that best represents their mood. Once selected, they are offered a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
+
+If they select save, they will be invited to log in (or register). Once logged in, they can save their mood and joke/quote. They will then be invited to journal their thoughts for the day and save them. After saving, they will be shown their overview for the month, giving a summary of their emotions and letting them view entries for individual days. 
 
 <br> 
 
@@ -68,6 +71,12 @@ erDiagram
 
 
 - A virtual environment on your IDE to install requirements from requirements.txt
+- Install and activate Redis server using the following commands (for Homebrew):
+
+`brew install redis`
+
+`brew services start redis`
+
 - MySQL Workbench for the database (or equivalent)
 - A developer API key from the [Giphy developers website](https://developers.giphy.com/)
 - Create an account with Google Cloud using their free trial and follow [this guide](/https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=3473162&sjid=2552074629382520305-EU) to generate the correct credentials for using Oauth. The required app details are below: 
@@ -82,7 +91,7 @@ erDiagram
 <br> 
 
 
-> :bulb: **Tip:** In a rush? Run the app without Google OAuth and skip step 3 in the set-up below.
+> :bulb: **In a rush?** Run the app without Google OAuth and skip step 3 in the set-up below.
 > You will need to change app.run on [run.py](/run.py) to `app.run(debug=True), host='0.0.0.0', port=5500)`. Please note certain endpoints related to OAuth will not function correctly. 
 
 
@@ -143,21 +152,38 @@ Password: hello123
 
 <br> 
 
+## Features
+
+| Feature                                                            | Image                                                                                                  |
+|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| OAuth with Google | ![OAuth with Google](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/OAuth%20with%20Google.png)   |
+| Overview page with bar graph & calendar linking to journal entries | ![Graph & calendar page](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Dynamically%20updated%20graph%20and%20calendar.png)  |
+| Previous selected GIFs displayed on mouse hover on calendar dates |   ![Gif Hover Display](https://github.com/Rachel-Tookey/GIFeels/blob/feaaed37f98a3531165777eabd727438ff6e192c/project_images/Mouse%20hover%20displays%20GIF.png)  |
+| Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph | ![Colour coded calendar entries](https://github.com/Rachel-Tookey/GIFeels/blob/399316a3721873b8a0c7b41fa761bce7516ca0b5/project_images/GIFs%20%26%20moods%20displayed%20on%20mouse%20hover%20-%20bar%20chart.png) |
+| On archive page, user can dynamically update journal entry   | ![Dynamically update journal entry](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Dynamically%20update%20journal%20entry.png)|
+| Complete suite of unit tests, including in memory database using SQLite for database tests | ![Database-Tests](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Database%20testing.png) |
+| Database migration with Flask-Migrate | ![Flask-Migrate](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Flask%20migrate.png) |
+| Rate limiter with REDIS | ![Redis rate limiter](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Rate%20limiter.png)  |
+| Authentication decorator on restricted endpoints | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Decorator%20for%20authentication%20required.png)  |
+
+
+<br> 
 
 ## Future Development 
 
 We are currently working on taking this app to deployment. Features currently in development to help us take this next step are: 
 - Expanding the modular structure using Flask Blueprints 
-- Adding in a rate limiter 
 - Cors policy 
-- Adding a privacy and service policy 
-- Adding in AI recommendations through the Google Gemini API 
+- Privacy and service policy 
+- AI recommendations through the Google Gemini API 
 - Incorporating the use of sound 
 
 <br> 
 
 
 ## Developers
+
+This project was initially created on the Code First Girls CFGDegree with the below developers. [@Rachel-Tookey](https://www.github.com/Rachel-Tookey) and [@Fabi-P](https://www.github.com/Fabi-P) forked off the initial repo and have continued development, implementing a modular code structure, ORMs with SQLalchemy, OAuth and interactive web elements with Javascript. 
 
 Laura: https://github.com/Laura-Kam \
 Fabi: https://github.com/Fabi-P \

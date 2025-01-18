@@ -32,14 +32,14 @@ def get_password(user_id):
     return LocalUser.query.filter_by(user_id=user_id).first().password
 
 
-def add_new_global_user(email, username = None):
+def add_new_global_user(email, username=None):
     new_user = User(email=email, username=username)
     db.session.add(new_user)
     db.session.commit()
 
 
 def add_new_local_user(user_id, user):
-    new_user = LocalUser(user_id=user_id, first_name=user['FirstName'], family_name=user['LastName'], password=user['password'], accept_tos=True)
+    new_user = LocalUser(user_id=user_id, first_name=user['firstname'], family_name=user['lastname'], password=user['password'], accept_tos=True)
     db.session.add(new_user)
     db.session.commit()
 

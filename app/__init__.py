@@ -8,12 +8,16 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_cors import CORS
 from app.cors_policy import cors_resource
+from flask_wtf.csrf import CSRFProtect
+
 
 db = SQLAlchemy()
 oauth = OAuth()
 bcrypt = Bcrypt()
 limiter = Limiter(get_remote_address)
 cors = CORS()
+csrf = CSRFProtect()
+
 
 def create_app(config_class=Config, test_config=None):
 
@@ -33,6 +37,7 @@ def create_app(config_class=Config, test_config=None):
     bcrypt.init_app(app)
     limiter.init_app(app)
     cors.init_app(app, resources=cors_resource)
+    csrf.init_app(app)
 
     Migrate(app, db)
 

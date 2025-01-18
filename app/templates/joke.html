@@ -18,6 +18,7 @@ styles -%}<link rel="stylesheet" href="../static/css/joke.css" />
     <div class="card-body">
       <p class="card-text">{{joke}}</p>
       <form method="Post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <button type="submit" value="submit" id="save-entry-btn" class="btn">
           Save entry
         </button>

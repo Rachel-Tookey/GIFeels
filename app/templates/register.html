@@ -4,21 +4,22 @@
 <div class="reg-wrapper">
   {% from "_formhelpers.html" import render_field %}
   <form method="POST" id="RegisterForm" action="">
-
+    {{ form.csrf_token }}
     <h1>Count me in.</h1>
 
     <dl class="input-container">
 
       <div class="input-field">
-        {{ render_field(form.FirstName) }}
+        {{ render_field(form.firstname) }}
+      </div>
+
+
+      <div class="input-field">
+        {{ render_field(form.lastname) }}
       </div>
 
       <div class="input-field">
-        {{ render_field(form.LastName) }}
-      </div>
-
-      <div class="input-field">
-        {{ render_field(form.Username) }}
+        {{ render_field(form.username) }}
       </div>
 
       <div class="input-field">

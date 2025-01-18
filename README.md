@@ -165,7 +165,7 @@ Password: hello123
 | Database migration with Flask-Migrate | ![Flask-Migrate](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/project_images/Flask%20migrate.png) |
 | Rate limiter with REDIS | ![Redis rate limiter](https://github.com/Rachel-Tookey/GIFeels/blob/8e3307afc64b441ef2134d015828db966d3cbb65/project_images/Rate%20limiter%20settings.png)  |
 | Authentication decorator on restricted endpoints | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Decorator%20for%20authentication%20required.png)  |
-| CSRF protection on all user POST/PUT/DELETE requests | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/project_images/Decorator%20for%20authentication%20required.png)  |
+| CSRF protection on all user POST/PUT/DELETE requests | ![CSRF Protection](https://github.com/Rachel-Tookey/GIFeels/blob/8dbb0ce3f7a053587f8f9d052b46740f13a19646/project_images/CSRF%20Protection.png)  |
 
 
 <br> 

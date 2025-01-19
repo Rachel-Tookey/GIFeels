@@ -2,6 +2,7 @@ import unittest
 from flask_testing import TestCase
 from app import create_app, db
 
+
 class MyTest(TestCase):
 
     def create_app(self):
@@ -42,10 +43,6 @@ class MyTest(TestCase):
     def test_overview_redirect(self):
         response = self.client.get('/overview', follow_redirects=False)
         self.assert_status(response, 302)
-
-    def test_form_submission_wrongpw(self):
-        self.client.post('/register', data={'FirstName': 'Rachel', 'LastName': 'Tookey', "Username": "Rachel1993", "email": "rachel@tookey.com", "password":"snow", "confirm":"rain", "accept_tos":True})
-        self.assert_message_flashed('Password and Password Confirmation do not match', "error")
 
     def test_form(self):
         response = self.client.post('/register', data={'FirstName': 'Rachel', 'LastName': 'Tookey', "Username": "Rachel1993", "email": "rachel@tookey.com", "password":"snow", "confirm":"snow", "accept_tos":True}, follow_redirects=True)

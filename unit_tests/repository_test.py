@@ -1,4 +1,4 @@
-from app import db_utils
+from app import repository
 import unittest
 from app import db, create_app
 from app.models.user import User
@@ -62,80 +62,80 @@ class TestWebApp(unittest.TestCase):
         db.session.commit()
 
     def test_username_exists(self):
-        resp = db_utils.check_username_exists("test_user")
+        resp = repository.check_username_exists("test_user")
         assert resp is True
 
     def test_username_does_not_exist(self):
-        resp = db_utils.check_username_exists("wrong_user")
+        resp = repository.check_username_exists("wrong_user")
         assert resp is False
 
     def test_get_id_by_username(self):
-        resp = db_utils.get_user_id_by_username("another_user")
+        resp = repository.get_user_id_by_username("another_user")
         assert resp == 2
 
     def test_get_userid_by_email(self):
-        resp = db_utils.get_user_id_by_email("test@email")
+        resp = repository.get_user_id_by_email("test@email")
         assert resp == 1
 
     def test_get_password_by_id(self):
-        resp = db_utils.get_password(2)
+        resp = repository.get_password(2)
         assert resp == 'abc'
 
     def test_email_exists(self):
-        resp = db_utils.check_email_exists("test@email")
+        resp = repository.check_email_exists("test@email")
         assert resp is True
 
     def test_email_does_not_exist(self):
-        resp = db_utils.check_email_exists("wrong@email")
+        resp = repository.check_email_exists("wrong@email")
         assert resp is False
 
     def test_check_entry_exists(self):
         date = datetime(2024, 5, 31).date()
-        resp = db_utils.check_entry_exists(1, date)
+        resp = repository.check_entry_exists(1, date)
         assert resp is True
 
     def test_check_entry_does_not_exist(self):
         date = datetime(2024, 5, 30)
-        resp = db_utils.check_entry_exists(1, date)
+        resp = repository.check_entry_exists(1, date)
         assert resp is False
 
     def test_returns_correct_entry(self):
         date = datetime(2024, 5, 31).date()
         test_entries_one = Entries(id=1, user_id=1, entry_date=date, emotion='frustrated', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
-        resp = db_utils.get_records(1, date)
+        resp = repository.get_records(1, date)
         assert resp.giphy_url == test_entries_one.giphy_url
         assert resp.emotion == test_entries_one.emotion
         assert resp.choice == test_entries_one.choice
 
     def test_returns_null_entry(self):
         date = datetime(2024, 5, 31).date()
-        resp = db_utils.get_records(2, date)
+        resp = repository.get_records(2, date)
         assert resp is None
 
     def test_delete_entry(self):
         date = datetime(2025, 5, 31).date()
-        resp = db_utils.get_records(2, date)
+        resp = repository.get_records(2, date)
         assert resp is not None
-        db_utils.delete_entry(2, date)
-        resp = db_utils.get_records(2, date)
+        repository.delete_entry(2, date)
+        resp = repository.get_records(2, date)
         assert resp is None
 
     def test_check_journal_entry_exists(self):
         date = datetime(2026, 5, 31).date()
-        resp = db_utils.check_journal_entry_exists(1, date)
+        resp = repository.check_journal_entry_exists(1, date)
         assert resp is True
 
     def test_check_journal_entry_null(self):
         date = datetime(2024, 5, 31).date()
-        resp = db_utils.check_journal_entry_exists(1, date)
+        resp = repository.check_journal_entry_exists(1, date)
         assert resp is False
 
     def test_get_emotion_count_one(self):
-        resp = db_utils.get_emotion_count(1, 'frustrated', 5, 2024)
+        resp = repository.get_emotion_count(1, 'frustrated', 5, 2024)
         assert resp is 1
 
     def test_get_emotion_count_zero(self):
-        resp = db_utils.get_emotion_count(1, 'frustrated', 4, 2024)
+        resp = repository.get_emotion_count(1, 'frustrated', 4, 2024)
         assert resp is 0
 
     def test_get_month_emotions(self):
@@ -146,7 +146,7 @@ class TestWebApp(unittest.TestCase):
  {'name': 'frustrated', 'value': 1},
  {'name': 'angry', 'value': 0}]
 
-        resp = db_utils.get_month_emotions(1, 5, 2024)
+        resp = repository.get_month_emotions(1, 5, 2024)
         assert expected_list == resp
 
     def test_get_month_emotions_none(self):
@@ -156,32 +156,32 @@ class TestWebApp(unittest.TestCase):
                          {'name': 'worried', 'value': 0},
                          {'name': 'frustrated', 'value': 0},
                          {'name': 'angry', 'value': 0}]
-        resp = db_utils.get_month_emotions(1, 1, 2024)
+        resp = repository.get_month_emotions(1, 1, 2024)
         assert expected_list == resp
 
     def test_emotions_added(self):
         date = datetime(2027, 5, 31).date()
-        resp = db_utils.check_entry_exists(1, date)
+        resp = repository.check_entry_exists(1, date)
         assert resp is False
-        db_utils.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', choice='Joke', response='jks')
-        resp = db_utils.check_entry_exists(1, date)
+        repository.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', choice='Joke', response='jks')
+        resp = repository.check_entry_exists(1, date)
         assert resp is True
 
     def test_journal_added(self):
         date = datetime(2027, 5, 31).date()
-        db_utils.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', choice='Joke', response='jks')
-        resp = db_utils.check_journal_entry_exists(1, date)
+        repository.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', choice='Joke', response='jks')
+        resp = repository.check_journal_entry_exists(1, date)
         assert resp is False
-        db_utils.add_journal("New journal", 1, date)
-        resp = db_utils.check_journal_entry_exists(1, date)
+        repository.add_journal("New journal", 1, date)
+        resp = repository.check_journal_entry_exists(1, date)
         assert resp is True
 
 
     def test_add_local_user_fk_fail(self):
         db.session.execute(text("PRAGMA foreign_keys = ON"))
-        localuser = { 'FirstName' : "new", 'LastName' : "user", 'password' : "abcdefg" }
+        localuser = { 'firstname' : "new", 'lastname' : "user", 'password' : "abcdefg" }
         with self.assertRaises(IntegrityError):
-            db_utils.add_new_local_user(20, user=localuser)
+            repository.add_new_local_user(20, user=localuser)
 
 
 if __name__ == "__main__":

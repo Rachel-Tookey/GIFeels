@@ -3,11 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from authlib.integrations.flask_client import OAuth
 from flask_bcrypt import Bcrypt
-from settings import Config
+from app.settings.settings import Config
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_cors import CORS
-from app.cors_policy import cors_resource
+from app.settings.cors_policy import cors_resource
 from flask_wtf.csrf import CSRFProtect
 
 

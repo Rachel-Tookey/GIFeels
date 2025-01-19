@@ -1,13 +1,12 @@
-from app.db_utils import *
-from app.api_utils import QuoteAPI, JokeAPI, MoodDict
+from app.repository import *
+from app.external_api_clients import QuoteAPI, JokeAPI, MoodDict
 from app.forms.registration_form import RegistrationForm
 from flask import render_template, request, flash, redirect, session, url_for, Blueprint, jsonify, current_app
 from datetime import datetime
-from app.date_utils import get_utc_date
+from app.utils.date_utils import get_utc_date
 from functools import wraps
-from app.oauth_providers import googleOauth
+from app.settings.oauth_providers import googleOauth
 from app import bcrypt
-from werkzeug.exceptions import HTTPException
 
 main = Blueprint('main', __name__)
 

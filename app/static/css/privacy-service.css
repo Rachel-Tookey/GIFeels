@@ -2,7 +2,12 @@ section {
   margin-top: 32px;
   display: block;
   width: 100%;
-  height: 400px;
+  height: 100%;
+  padding: 75px 150px;
   background-color: #fdfaf3;
   font-family: "Outfit", sans-serif;}
+}
+
+a {
+  color: #7d6dac;
 }

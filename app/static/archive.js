@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     let currentLocation = window.location;
-
     const deleteButton = document.getElementById('delBut');
 
     deleteButton.addEventListener('click', () => {
@@ -23,6 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    function saveJournal(valueToSave) {
+        $(document).ready(function(){
+        $.ajax({
+          data : {
+            content : valueToSave
+          },
+          type : 'PUT',
+          url : currentLocation})
+        .done ();
+        e.preventDefault();
+        });
+    };
+
 
     const diaryBox = document.getElementById('diaryText');
     const editText = document.getElementById('edit');
@@ -38,11 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const textarea = diaryBox.querySelector('textarea');
 
 
-
             function resizeInput() {
                 textarea.style.height = 'auto';
                 textarea.style.height = `${textarea.scrollHeight}px`;
-
             }
 
             resizeInput();
@@ -61,22 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
             textarea.focus();
-
         }
-
-        function saveJournal(valueToSave) {
-        $(document).ready(function(){
-        $.ajax({
-          data : {
-            content : valueToSave
-          },
-          type : 'PUT',
-          url : currentLocation})
-        .done ();
-        e.preventDefault();
-        });
-    };
-
-
 
 });

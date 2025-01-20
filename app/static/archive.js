@@ -41,25 +41,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     editText.addEventListener('click', () => textBox() );
 
+     function resizeInput(container) {
+                container.style.height = 'auto';
+                container.style.height = `${container.scrollHeight}px`;
+     }
+
     function textBox() {
 
-            diaryBox.innerHTML =
-            `<textarea type="text" value="${diaryBox.textContent}" class="diary-input" wrap="soft" maxlength="350">
-            ${diaryBox.textContent}</textarea>`;
+            const textarea = document.createElement("textarea");
 
-            const textarea = diaryBox.querySelector('textarea');
+            textarea.type = "text";
+            textarea.value = diaryBox.textContent;
+            textarea.className = "diary-input";
+            textarea.style.wrap = "soft";
+            textarea.maxlength = "350";
+            textarea.textContent = diaryBox.textContent;
+            diaryBox.textContent = '';
+            diaryBox.appendChild(textarea);
 
+            resizeInput(textarea);
 
-            function resizeInput() {
-                textarea.style.height = 'auto';
-                textarea.style.height = `${textarea.scrollHeight}px`;
-            }
+            textarea.addEventListener('focus', () => textarea.select() )
 
-            resizeInput();
-
-            textarea.addEventListener(`focus`, () => textarea.select() )
-
-            textarea.addEventListener('input', resizeInput);
+            textarea.addEventListener('input', () => resizeInput(textarea));
 
             textarea.addEventListener('blur', () => {
                     const updatedValue = textarea.value;

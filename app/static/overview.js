@@ -45,9 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         monthYearDisplay.textContent = monthAndYear;
         statsTitle.textContent = "Your moods for " + monthAndYear;
 
-
         // Clear the previous days
-        daysContainer.innerHTML = '';
+        while(daysContainer.firstChild) {
+                daysContainer.removeChild(daysContainer.firstChild);
+            }
+
 
 
         // Fill in the days of the month
@@ -143,7 +145,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         const barsContainer = document.getElementById('bars');
-        barsContainer.innerHTML = ''; // Clear any existing bars
+
+        // Clear any existing bars
+       while(barsContainer.firstChild) {
+                barsContainer.removeChild(barsContainer.firstChild);
+            }
+
+
 
         // Find the data for the current month
         const currentMonthData = monthlyData;

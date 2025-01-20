@@ -49,7 +49,6 @@ def error_handler(error):
     return redirect('/')
 
 
-
 @main.route('/', methods=['GET'])
 def mood_checkin():
     if 'mood_dict' not in session:
@@ -118,18 +117,17 @@ def add_journal_entry():
             flash_error('Journal is empty')
         elif len(content) > 350:
             flash_error("Oops! Journal entries must be 350 characters or less...")
+        elif not check_entry_exists(session['user_id'], session['date']):
+            flash_notification("You need to save today's emotion first!")
+        elif check_journal_entry_exists(session['user_id'], session['date']):
+            flash_notification('You have already submitted a diary entry for this date')
         else:
-            if not check_entry_exists(session['user_id'], session['date']):
-                flash_notification("You need to save today's emotion first!")
-            elif check_journal_entry_exists(session['user_id'], session['date']):
-                flash_notification('You have already submitted a diary entry for this date')
+            add_journal(content, session['user_id'], session['date'])
+            if check_journal_entry_exists(session['user_id'], session['date']):
+                flash_notification("Your entry has been saved.")
+                return redirect('/overview')
             else:
-                add_journal(content, session['user_id'], session['date'])
-                if check_journal_entry_exists(session['user_id'], session['date']):
-                    flash_notification("Your entry has been saved.")
-                    return redirect('/overview')
-                else:
-                    flash_error('Something went wrong. Please try again later.')
+                flash_error('Something went wrong. Please try again later.')
     return render_template("journal.html")
 
 
@@ -151,19 +149,15 @@ def show_overview():
 @login_required
 def show_archive_by_date(date):
     user_entry = get_records(session['user_id'], date)
-
     if user_entry is None:
         flash_notification(f"No records saved on {date}")
         return redirect('/overview')
     record = {'emotion': user_entry.emotion, 'gif_url': user_entry.giphy_url, 'choice': user_entry.choice, 'quote_joke': user_entry.content,
               'diary': f"Click to add a diary entry for {date}!" if user_entry.diary_entry is None else user_entry.diary_entry}
-
     if request.method == 'PUT':
         add_journal(request.form.get('content'), session['user_id'], date)
-
     if request.method == 'DELETE':
         delete_entry(user_id=session['user_id'], date=date)
-
     return render_template("archive.html", date=date, record=record)
 
 

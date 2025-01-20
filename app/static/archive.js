@@ -65,14 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             textarea.addEventListener('input', () => resizeInput(textarea));
 
-            textarea.addEventListener('blur', () => {
+            function updateValue() {
                     const updatedValue = textarea.value;
                     if (diaryBox.textContent != textarea.value) {
                             diaryBox.textContent = updatedValue;
                             saveJournal(updatedValue);
                     }
                     diaryBox.textContent = updatedValue;
-                });
+            }
+
+
+            textarea.addEventListener('blur', () => updateValue());
+
+            textarea.addEventListener('keypress', function(e) {
+                  if (event.key === "Enter") {
+                        event.preventDefault();
+                        updateValue();
+            }});
 
             textarea.focus();
         }

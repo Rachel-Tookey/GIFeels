@@ -61,10 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             resizeInput(textarea);
 
-            textarea.addEventListener('focus', () => textarea.select() )
-
-            textarea.addEventListener('input', () => resizeInput(textarea));
-
             function updateValue() {
                     const updatedValue = textarea.value;
                     if (diaryBox.textContent != textarea.value) {
@@ -74,6 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     diaryBox.textContent = updatedValue;
             }
 
+            textarea.addEventListener('focus', () => textarea.select() )
+
+            textarea.addEventListener('input', () => resizeInput(textarea));
 
             textarea.addEventListener('blur', () => updateValue());
 

@@ -22,5 +22,6 @@ class Config:
     SESSION_TYPE = 'filesystem'
     SESSION_FILE_DIR='/tmp/flask_sessions'
 
+    # remove these if they don't fix safari issue:
     # app.config['SESSION_COOKIE_HTTPONLY'] = True  # Prevents JavaScript access
     SESSION_COOKIE_SAMESITE = 'Lax'  # 'Strict' can block cookies too aggressively

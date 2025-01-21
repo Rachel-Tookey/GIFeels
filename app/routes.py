@@ -230,10 +230,12 @@ def user_logout():
     flash_notification("You have been logged out. See you soon!")
     return redirect('/')
 
+
 @main.route('/privacy')
 def privacy():
     session.clear()
     return render_template("privacy.html")
+
 
 @main.route('/service')
 def service():

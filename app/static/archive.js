@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     let currentLocation = window.location;
-
     const deleteButton = document.getElementById('delBut');
 
     deleteButton.addEventListener('click', () => {
@@ -23,48 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-
-    const diaryBox = document.getElementById('diaryText');
-    const editText = document.getElementById('edit');
-
-    editText.addEventListener('click', () => textBox() );
-
-    function textBox() {
-
-            diaryBox.innerHTML =
-            `<textarea type="text" value="${diaryBox.textContent}" class="diary-input" wrap="soft" maxlength="350">
-            ${diaryBox.textContent}</textarea>`;
-
-            const textarea = diaryBox.querySelector('textarea');
-
-
-
-            function resizeInput() {
-                textarea.style.height = 'auto';
-                textarea.style.height = `${textarea.scrollHeight}px`;
-
-            }
-
-            resizeInput();
-
-            textarea.addEventListener(`focus`, () => textarea.select() )
-
-            textarea.addEventListener('input', resizeInput);
-
-            textarea.addEventListener('blur', () => {
-                    const updatedValue = textarea.value;
-                    if (diaryBox.textContent != textarea.value) {
-                            diaryBox.textContent = updatedValue;
-                            saveJournal(updatedValue);
-                    }
-                    diaryBox.textContent = updatedValue;
-                });
-
-            textarea.focus();
-
-        }
-
-        function saveJournal(valueToSave) {
+    function saveJournal(valueToSave) {
         $(document).ready(function(){
         $.ajax({
           data : {
@@ -78,5 +36,53 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
+    const diaryBox = document.getElementById('diaryText');
+    const editText = document.getElementById('edit');
+
+    editText.addEventListener('click', () => textBox() );
+
+     function resizeInput(container) {
+                container.style.height = 'auto';
+                container.style.height = `${container.scrollHeight}px`;
+     }
+
+    function textBox() {
+
+            const textarea = document.createElement("textarea");
+
+            textarea.type = "text";
+            textarea.value = diaryBox.textContent;
+            textarea.className = "diary-input";
+            textarea.style.wrap = "soft";
+            textarea.maxlength = "350";
+            textarea.textContent = diaryBox.textContent;
+            diaryBox.textContent = '';
+            diaryBox.appendChild(textarea);
+
+            resizeInput(textarea);
+
+            function updateValue() {
+                    const updatedValue = textarea.value;
+                    if (diaryBox.textContent != textarea.value) {
+                            diaryBox.textContent = updatedValue;
+                            saveJournal(updatedValue);
+                    }
+                    diaryBox.textContent = updatedValue;
+            }
+
+            textarea.addEventListener('focus', () => textarea.select() )
+
+            textarea.addEventListener('input', () => resizeInput(textarea));
+
+            textarea.addEventListener('blur', () => updateValue());
+
+            textarea.addEventListener('keypress', function(e) {
+                  if (event.key === "Enter") {
+                        event.preventDefault();
+                        updateValue();
+            }});
+
+            textarea.focus();
+        }
 
 });

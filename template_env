@@ -6,8 +6,12 @@ GOOGLE_CLIENT_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_DOMAIN=
 
-CONNECTION_STRING="mysql+mysqlconnector://<username>:<password>@<hostname>/mood_tracker"
-
 REDIS_HOST='localhost'
 
 STORAGE_URI="redis://127.0.0.1:6379"
+
+MYSQL_ROOT_PASSWORD=
+
+CONNECTION_STRING='mysql+mysqlconnector://<username>:<password>@localhost/mood_tracker'
+
+CONNECTION_STRING_DOCKER='mysql+mysqlconnector://<username>:<password>!@mysql/mood_tracker'

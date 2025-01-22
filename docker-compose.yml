@@ -1,5 +1,8 @@
 services:
 
+
+
+
   redis:
     image: redis:latest
     restart: always
@@ -27,7 +30,7 @@ services:
       timeout: 10s
       retries: 10
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysql:/var/lib/mysql
 
   flask:
     container_name: GIFeels
@@ -49,12 +52,6 @@ services:
         condition: service_healthy
     ports:
       - "8443:8443"
-    healthcheck:
-      test: curl --fail http://127.0.0.1:8443/
-      interval: 10s
-      timeout: 10s
-      retries: 3
 
 volumes:
-  mysql-data:
-    driver: local
+  mysql:

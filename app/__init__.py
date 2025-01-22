@@ -21,10 +21,7 @@ cors = CORS()
 csrf = CSRFProtect()
 REDIS_HOST = os.getenv('REDIS_HOST')
 redis = Redis(host=REDIS_HOST, port=6379, db=0, decode_responses=True)
-print("🚨 Check for connection to Redis:")
-print(redis.hgetall("1"))
-redis.set('test', '123')
-print(redis.get('test'))
+
 
 def create_app(config_class=Config, test_config=None):
 

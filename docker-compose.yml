@@ -1,8 +1,5 @@
 services:
 
-
-
-
   redis:
     image: redis:latest
     restart: always

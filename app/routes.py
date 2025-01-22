@@ -40,13 +40,9 @@ def error_handler(error):
 @main.errorhandler(Exception)
 def error_handler(error):
     current_app.logger.error(f"Error occurred at route: {request.path} (method: {request.method}) - Error: {error}")
-    flash_error("Something went wrong. Please try again later")
-    if request.path == "/":
-        return render_template("disaster.html")
-    flash_error("Something went wrong. Please try again later")
-    if request.referrer:
+    if request.referrer != 'http://127.0.0.1:8443/' and request.referrer != 'https://www.gifeels.co.uk/':
         return redirect(request.referrer)
-    return redirect('/')
+    return render_template("disaster.html")
 
 
 @main.route('/', methods=['GET'])

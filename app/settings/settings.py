@@ -18,3 +18,5 @@ class Config:
     RATELIMIT_STORAGE_URI = os.getenv('STORAGE_URI')
     RATELIMIT_STORAGE_OPTIONS = {"socket_connect_timeout": 30}
     RATELIMIT_DEFAULT = "1000 per day"
+
+

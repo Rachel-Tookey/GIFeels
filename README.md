@@ -71,11 +71,15 @@ erDiagram
 
 
 - A virtual environment on your IDE to install requirements from requirements.txt
-- Install and activate Redis server using the following commands (for Homebrew):
+- Install and activate Redis server: 
 
-`brew install redis`
+| System  | Method                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| MacOS   | `brew install redis` <br/> `brew services start redis`                                                                                                                                                                                                                                                                                                                                                                                                                                    | 
+| Linux   | `sudo apt-get install lsb-release curl gpg` <br/> `curl -fsSL https://packages.redis.io/gpg  \| sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg` <br/> `sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg`<br/> `echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" \| sudo tee /etc/apt/sources.list.d/redis.list` <br/> `sudo apt-get update` <br/> `sudo apt-get install redis` |                                                 |
+| Windows | ~~Turn back now before it is too late.~~ Redis is not officially supported on Windows, so <a href="https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-windows/">follow this guide<a/> for how to use it in development                                                                                                                                                                                                                             |
 
-`brew services start redis`
+
 
 - MySQL Workbench for the database (or equivalent)
 - A developer API key from the [Giphy developers website](https://developers.giphy.com/)

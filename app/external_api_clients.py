@@ -1,6 +1,6 @@
 import os
 
-from data.default import default_gifs, default_jokes, default_quotes
+from app.data.default import default_gifs, default_jokes, default_quotes
 from random import randint, choice
 import requests
 from abc import ABC, abstractmethod

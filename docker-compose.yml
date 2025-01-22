@@ -24,7 +24,7 @@ services:
     ports:
       - "3307:3306"
     healthcheck:
-      test: mysql --host=mysql --user="root" --password="***REMOVED***" --silent --execute "USE mood_tracker;"
+      test: mysql --host=mysql --user="root" --password="" --silent --execute "USE mood_tracker;"
       interval: 10s
       timeout: 10s
       retries: 10

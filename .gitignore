@@ -169,3 +169,5 @@ cython_debug/
 certificate.pem
 csr.pem
 private.pem
+
+.DS_Store

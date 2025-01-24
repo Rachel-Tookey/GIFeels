@@ -6,8 +6,8 @@ from app.models.authuser import AuthUser
 from sqlalchemy import and_, extract
 
 
-def today_emotion(user_id, emotion, giphy_url, date, choice, response):
-    new_entry = Entries(user_id=user_id, entry_date=date, emotion=emotion, giphy_url=giphy_url, choice=choice.capitalize(), content=response)
+def today_emotion(user_id, emotion, giphy_url, giphy_url_gif, date, choice, response):
+    new_entry = Entries(user_id=user_id, entry_date=date, emotion=emotion, giphy_url=giphy_url, giphy_url_gif=giphy_url_gif, choice=choice.capitalize(), content=response)
     db.session.add(new_entry)
     db.session.commit()
 
@@ -128,11 +128,6 @@ def get_entry_dates_month(user_id, month, year):
              extract('year', Entries.entry_date) == year,
              ))
     for entry in entries:
-        giphy_split = entry.giphy_url.split('.')
-        if giphy_split[2][-2:] == 'v1':
-            correct_url = giphy_split[0] + '.' + giphy_split[1] + '.' + giphy_split[2] + '.' + giphy_split[3] + '.gif'
-        else:
-            correct_url = giphy_split[0] + '.' + giphy_split[1] + '.' + giphy_split[2] + '.gif'
-        date_list[entry.entry_date.strftime("%Y%m%d")] = {'color': colors[entry.emotion], 'url': correct_url}
+        date_list[entry.entry_date.strftime("%Y%m%d")] = {'color': colors[entry.emotion], 'url': entry.giphy_url_gif}
     return date_list
 

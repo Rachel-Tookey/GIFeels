@@ -21,6 +21,7 @@ def mood_checkin():
 def choice(emotion_id):
     session['emotion'] = emotion_id
     session['mood_url'] = session['mood_dict'][emotion_id]
+    session['mood_url_gif'] = session['mood_dict'][f"{emotion_id}_gif"]
     return render_template("choice.html", emotion=emotion_id)
 
 
@@ -32,7 +33,7 @@ def save_choice():
     if entry_saved_already:
         flash_notification("You have already saved an entry for today")
     else:
-        today_emotion(session['user_id'], session['emotion'], session['mood_url'], session['date'], session['choice'], session[choice])
+        today_emotion(session['user_id'], session['emotion'], session['mood_url'], session['mood_url_gif'], session['date'], session['choice'], session[choice])
         if check_entry_exists(session['user_id'], session['date']):
             flash_notification("Your entry has been saved.")
             return redirect('/journal')

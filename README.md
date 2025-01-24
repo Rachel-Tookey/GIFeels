@@ -58,6 +58,7 @@ erDiagram
         Date entry_date
         string emotion
         string giphy_url
+        string giphy_url_gif
         string choice 
         string content
         string diary_entry

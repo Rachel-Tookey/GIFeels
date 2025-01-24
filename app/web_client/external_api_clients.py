@@ -91,7 +91,7 @@ class MoodAPI(APIRequest):
             mood = self.params['q']
             gif_url_mp4 = default_gifs[mood]
             gif_url_gif = default_gifs[f"{mood}_gif"]
-        return (gif_url_mp4, gif_url_gif)
+        return [gif_url_mp4, gif_url_gif]
 
 
 class MoodDict(object):
@@ -102,8 +102,9 @@ class MoodDict(object):
 
     def make_dict(self):
         for mood in self.list:
-            self.dict[mood] = MoodAPI(mood).unpack().index(0)
-            self.dict[f"{mood}_gif"] = MoodAPI(mood).unpack().index(0)
+            link_tuple = MoodAPI(mood).unpack()
+            self.dict[mood] = link_tuple[0]
+            self.dict[f"{mood}_gif"] = link_tuple[1]
         return self.dict
 
 

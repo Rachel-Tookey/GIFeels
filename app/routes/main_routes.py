@@ -4,6 +4,7 @@ from flask import render_template, request, redirect, session, Blueprint, jsonif
 from datetime import datetime
 from app.utils.flask_helpers import flash_error, flash_notification
 from app.wrappers.login_wrapper import login_required
+from app.utils.dict_utils import clean_dict
 
 main = Blueprint('main', __name__)
 
@@ -14,7 +15,7 @@ def mood_checkin():
         emotions_api = MoodDict()
         emotions_dict = emotions_api.make_dict()
         session['mood_dict'] = emotions_dict
-    return render_template("mood.html", emotions=session['mood_dict'])
+    return render_template("mood.html", emotions=clean_dict(session['mood_dict']))
 
 
 @main.route('/choice/<emotion_id>', methods=['GET', 'POST'])

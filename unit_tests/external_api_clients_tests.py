@@ -1,4 +1,4 @@
-from app.external_api_clients import QuoteAPI, JokeAPI, MoodAPI
+from app.web_client.external_api_clients import QuoteAPI, JokeAPI, MoodAPI
 from unittest import TestCase, main
 from unittest.mock import MagicMock, patch
 

@@ -12,6 +12,7 @@ class Config:
     PERMANENT_SESSION_LIFETIME=timedelta(minutes=20)
 
     SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_PATH = '/'
 
     SQLALCHEMY_DATABASE_URI = os.getenv("CONNECTION_STRING")
 

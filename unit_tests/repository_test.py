@@ -1,4 +1,4 @@
-from app import repository
+from app.data import repository
 import unittest
 from app import db, create_app
 from app.models.user import User

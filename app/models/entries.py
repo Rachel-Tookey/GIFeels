@@ -12,7 +12,7 @@ class Entries(db.Model):
 
     emotion = Column('emotion', String(50), nullable=False)
 
-    giphy_url = Column('giphy_url_mp4', String(250), nullable=False)
+    giphy_url = Column('giphy_url', String(250), nullable=False)
 
     giphy_url_gif = Column('giphy_url_gif', String(250), nullable=False)
 

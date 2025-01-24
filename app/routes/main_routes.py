@@ -4,6 +4,7 @@ from flask import render_template, request, redirect, session, Blueprint, jsonif
 from datetime import datetime
 from app.utils.flask_helpers import flash_error, flash_notification
 from app.wrappers.login_wrapper import login_required
+from app.utils.dict_utils import clean_dict
 
 main = Blueprint('main', __name__)
 
@@ -14,13 +15,14 @@ def mood_checkin():
         emotions_api = MoodDict()
         emotions_dict = emotions_api.make_dict()
         session['mood_dict'] = emotions_dict
-    return render_template("mood.html", emotions=session['mood_dict'])
+    return render_template("mood.html", emotions=clean_dict(session['mood_dict']))
 
 
 @main.route('/choice/<emotion_id>', methods=['GET', 'POST'])
 def choice(emotion_id):
     session['emotion'] = emotion_id
     session['mood_url'] = session['mood_dict'][emotion_id]
+    session['mood_url_gif'] = session['mood_dict'][f"{emotion_id}_gif"]
     return render_template("choice.html", emotion=emotion_id)
 
 
@@ -32,7 +34,7 @@ def save_choice():
     if entry_saved_already:
         flash_notification("You have already saved an entry for today")
     else:
-        today_emotion(session['user_id'], session['emotion'], session['mood_url'], session['date'], session['choice'], session[choice])
+        today_emotion(session['user_id'], session['emotion'], session['mood_url'], session['mood_url_gif'], session['date'], session['choice'], session[choice])
         if check_entry_exists(session['user_id'], session['date']):
             flash_notification("Your entry has been saved.")
             return redirect('/journal')

@@ -14,6 +14,8 @@ class Entries(db.Model):
 
     giphy_url = Column('giphy_url', String(250), nullable=False)
 
+    giphy_url_gif = Column('giphy_url_gif', String(250), nullable=False)
+
     choice = Column('choice', String(50), nullable=False)
 
     content = Column('response', String(500), nullable=False)

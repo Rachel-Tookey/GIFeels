@@ -84,12 +84,14 @@ class MoodAPI(APIRequest):
             clean_response = response.json()
             list = clean_response['data']
             item = list[0]
-            gif_url = item['images']['fixed_width']['mp4']
+            gif_url_mp4 = item['images']['fixed_width']['mp4']
+            gif_url_gif = item['image']['fixed_width']['url']
         except Exception as e:
             print('MoodAPI: ', e)
             mood = self.params['q']
-            gif_url = default_gifs[mood]
-        return gif_url
+            gif_url_mp4 = default_gifs[mood]
+            gif_url_gif = default_gifs[f"{mood}_gif"]
+        return [gif_url_mp4, gif_url_gif]
 
 
 class MoodDict(object):
@@ -100,7 +102,9 @@ class MoodDict(object):
 
     def make_dict(self):
         for mood in self.list:
-            self.dict[mood] = MoodAPI(mood).unpack()
+            link_tuple = MoodAPI(mood).unpack()
+            self.dict[mood] = link_tuple[0]
+            self.dict[f"{mood}_gif"] = link_tuple[1]
         return self.dict
 
 

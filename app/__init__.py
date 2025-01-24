@@ -1,5 +1,4 @@
 import os
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -28,12 +27,10 @@ def create_app(config_class=Config, test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     app.config.from_object(config_class)
-
     if test_config:
         app.config.update(test_config)
 
     app.jinja_env.lstrip_blocks = True
-
     app.jinja_env.trim_blocks = True
 
     db.init_app(app)
@@ -42,23 +39,18 @@ def create_app(config_class=Config, test_config=None):
     limiter.init_app(app)
     cors.init_app(app, resources=cors_resource)
     csrf.init_app(app)
-
     Migrate(app, db)
 
     from app.routes.auth_routes import auth
-
     app.register_blueprint(auth, cookie_path='/')
 
     from app.routes.error_routes import error
-
     app.register_blueprint(error, cookie_path='/')
 
     from app.routes.admin_routes import admin
-
     app.register_blueprint(admin, cookie_path='/')
 
     from app.routes.main_routes import main
-
     app.register_blueprint(main, cookie_path='/')
 
     return app

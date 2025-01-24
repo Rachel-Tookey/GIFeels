@@ -85,12 +85,12 @@ erDiagram
 - A developer API key from the [Giphy developers website](https://developers.giphy.com/)
 - Create an account with Google Cloud using their free trial and follow [this guide](/https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=3473162&sjid=2552074629382520305-EU) to generate the correct credentials for using Oauth. The required app details are below: 
 
-| Field                       | Value                                                                                                  |
-|-----------------------------|--------------------------------------------------------------------------------------------------------|
-| App Name                    | GIFeels                                                                                                |
-| Test users                  | `your-email`                                                                                           |
-| Allowed JavaScript origins: | https://127.0.0.1:443, https://localhost:443                                                           |
-| Allowed redirect URIs       | https://127.0.0.1:443/authorize/google, https://localhost:443/authorize/google, https://127.0.0.1:443/ |
+| Field                       | Value                                                                                                              |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------|
+| App Name                    | GIFeels                                                                                                            |
+| Test users                  | `your-email`                                                                                                       |
+| Allowed JavaScript origins: | https://127.0.0.1:443, https://localhost:443, http://localhost:443                                                 |
+| Allowed redirect URIs       | https://127.0.0.1:443/authorize/google, https://localhost:443/authorize/google, http://127.0.0.1/authorize/google  |
 
 <br> 
 
@@ -138,7 +138,8 @@ By running app.py in your IDE you will be able to launch https://127.0.0.1:443 (
 
 ### _Docker_ 
 
-Ensure you have Docker installed on your device. You can follow [this guide](https://docs.docker.com/get-started/get-docker/). Run [docker-compose.yml](docker-compose.yml). This uses nginx to provide a reverse proxy to the app's container. The app will be accessible at https://127.0.0.1:443.
+Ensure you have Docker installed on your device. You can follow [this guide](https://docs.docker.com/get-started/get-docker/). Run [docker-compose.yml](compose.yml). This uses nginx to provide a reverse proxy to the app's container. The app will be accessible at https://127.0.0.1:443.
+
 
 <br> 
 

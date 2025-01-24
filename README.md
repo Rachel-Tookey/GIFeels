@@ -132,15 +132,14 @@ erDiagram
 
 You can run the app via an IDE, like Pycharm, or Docker. Please note: the front-end design has been optimised for Google Chrome Browser and for the best experience, we'd recommend using this.
 
-### IDE
+### _IDE_
 
 By running app.py in your IDE you will be able to launch https://127.0.0.1:443 (or http://127.0.0.1:5500 if not using HTTPS) and go to the homepage of the app.
 
-### Docker 
+### _Docker_ 
 
-Ensure you have Docker installed on your device. You can follow [this guide](https://docs.docker.com/get-started/get-docker/).
+Ensure you have Docker installed on your device. You can follow [this guide](https://docs.docker.com/get-started/get-docker/). Run [docker-compose.yml](compose.yml). This uses nginx to provide a reverse proxy to the app's container. The app will be accessible at https://127.0.0.1:443.
 
-Run [docker-compose.yml](compose.yml). This uses nginx to provide a reverse proxy to the app's container. The app will be accessible at https://127.0.0.1:443.
 
 <br> 
 
@@ -174,16 +173,16 @@ Password: hello123
 
 | Feature                                                            | Image                                                                                                                                                                                                             |
 |--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| OAuth with Google | ![OAuth with Google](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/documentation/project_images/OAuth%20with%20Google.png)                                               |
-| Overview page with bar graph & calendar linking to journal entries | ![Graph & calendar page](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/documentation/project_images/Dynamically%20updated%20graph%20and%20calendar.png)                  |
-| Previous selected GIFs displayed on mouse hover on calendar dates | ![Gif Hover Display](https://github.com/Rachel-Tookey/GIFeels/blob/feaaed37f98a3531165777eabd727438ff6e192c/documentation/project_images/Mouse%20hover%20displays%20GIF.png)                                                    |
-| Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph | ![Colour coded calendar entries](https://github.com/Rachel-Tookey/GIFeels/blob/399316a3721873b8a0c7b41fa761bce7516ca0b5/documentation/project_images/GIFs%20%26%20moods%20displayed%20on%20mouse%20hover%20-%20bar%20chart.png) |
-| On archive page, user can dynamically update journal entry. This is saved using an AJAX.   | ![Dynamically update journal entry](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/documentation/project_images/Dynamically%20update%20journal%20entry.png)                             |
-| Complete suite of unit tests, including in memory database using SQLite for database tests | ![Database-Tests](https://github.com/Rachel-Tookey/GIFeels/blob/562df426c343372ce83538fcefa3d28de71975d2/documentation/project_images/Database%20unit%20tests.png)                                                              |
-| Database migration with Flask-Migrate | ![Flask-Migrate](https://github.com/Rachel-Tookey/GIFeels/blob/7ad9d4dcd0fe3397ad70d50e7168ca3b3a4a821b/documentation/project_images/Flask%20migrate.png)                                                                       |
-| Rate limiter with REDIS | ![Redis rate limiter](https://github.com/Rachel-Tookey/GIFeels/blob/8e3307afc64b441ef2134d015828db966d3cbb65/documentation/project_images/Rate%20limiter%20settings.png)                                                        |
-| Authentication decorator on restricted endpoints | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/3d32a8956abefffb43fa3cce8e6c600730dcd513/documentation/project_images/Decorator%20for%20authentication%20required.png)                                       |
-| CSRF protection on all user POST/PUT/DELETE requests | ![CSRF Protection](https://github.com/Rachel-Tookey/GIFeels/blob/8dbb0ce3f7a053587f8f9d052b46740f13a19646/documentation/project_images/CSRF%20Protection.png)                                                                   |
+| OAuth with Google | ![OAuth with Google](https://github.com/Rachel-Tookey/GIFeels/blob/e1e60ce4642e8506c08d8d535da23e55fdf5e035/documentation/project_images/OAuth%20with%20Google%20login%20page.png)   |
+| Overview page with bar graph & calendar linking to journal entries | ![Graph & calendar page](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/Dynamically%20updated%20graph%20and%20calendar.png)    |
+| Previous selected GIFs displayed on mouse hover on calendar dates | ![Gif Hover Display](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/Mouse%20hover%20displays%20GIF.png)    |
+| Calendar entries colour coded to 'emotion' with selected gif displayed on mouse hover on bar graph | ![Colour coded calendar entries](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/GIFs%20%26%20moods%20displayed%20on%20mouse%20hover%20-%20bar%20chart.png) |
+| On archive page, user can dynamically update journal entry. This is saved using an AJAX.   | ![Dynamically update journal entry](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/Dynamically%20update%20journal%20entry.png)                             |
+| Complete suite of unit tests, including in memory database using SQLite for database tests | ![Database-Tests](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/Database%20unit%20tests.png)   |
+| Database migration with Flask-Migrate | ![Flask-Migrate](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/Flask%20migrate.png)     |
+| Rate limiter with REDIS | ![Redis rate limiter](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/Rate%20limiter%20settings.png)   |
+| Authentication decorator on restricted endpoints | ![Wrapper decorator](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/Decorator%20for%20authentication%20required.png)   |
+| CSRF protection on all user POST/PUT/DELETE requests | ![CSRF Protection](https://github.com/Rachel-Tookey/GIFeels/blob/2304e321e97102d20443a9273dfa71b67b8d90b5/documentation/project_images/CSRF%20Protection.png)         |
 
 
 <br> 

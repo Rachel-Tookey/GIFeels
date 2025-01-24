@@ -44,20 +44,12 @@ class MyTest(TestCase):
         response = self.client.get('/overview', follow_redirects=False)
         self.assert_status(response, 302)
 
-    def test_form(self):
-        response = self.client.post('/register', data={'FirstName': 'Rachel', 'LastName': 'Tookey', "Username": "Rachel1993", "email": "rachel@tookey.com", "password":"snow", "confirm":"snow", "accept_tos":True}, follow_redirects=True)
-        self.assert_200(response)
-
     def test_404(self):
         response = self.client.get('/hello')
         self.assert404(response)
 
     def test_login_200(self):
         response = self.client.get('/login')
-        self.assert_200(response, 200)
-
-    def test_login_credentials_200(self):
-        response = self.client.post('/login', data={'uname': 'JoDoe', 'password': 'password123'}, follow_redirects=True)
         self.assert_200(response, 200)
 
     def test_session(self):

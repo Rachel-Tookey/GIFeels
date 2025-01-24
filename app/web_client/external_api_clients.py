@@ -90,7 +90,7 @@ class MoodAPI(APIRequest):
             print('MoodAPI: ', e)
             mood = self.params['q']
             gif_url_mp4 = default_gifs[mood]
-            # return as a tuple?
+            gif_url_gif = default_gifs[f"{mood}_gif"]
         return (gif_url_mp4, gif_url_gif)
 
 

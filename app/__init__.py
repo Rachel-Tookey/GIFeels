@@ -45,8 +45,20 @@ def create_app(config_class=Config, test_config=None):
 
     Migrate(app, db)
 
-    from app.routes import main
+    from app.routes.auth_routes import auth
 
-    app.register_blueprint(main)
+    app.register_blueprint(auth, cookie_path='/')
+
+    from app.routes.error_routes import error
+
+    app.register_blueprint(error, cookie_path='/')
+
+    from app.routes.admin_routes import admin
+
+    app.register_blueprint(admin, cookie_path='/')
+
+    from app.routes.main_routes import main
+
+    app.register_blueprint(main, cookie_path='/')
 
     return app

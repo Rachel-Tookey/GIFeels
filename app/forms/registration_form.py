@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, StringField, PasswordField, EmailField
 from wtforms.validators import Length, InputRequired, Email, EqualTo, ValidationError
-from app.repository import check_username_exists, check_email_exists
+from app.data.repository import check_username_exists, check_email_exists
 import re
 
 

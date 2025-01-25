@@ -188,7 +188,7 @@ Password: hello123
 
 <br> 
 
-## Future Development 
+## 🔮  Future Development 
 
 We are currently working on taking this app to deployment. Features currently in development to help us take this next step are: 
 - AI recommendations through the Google Gemini API 
@@ -196,7 +196,7 @@ We are currently working on taking this app to deployment. Features currently in
 <br> 
 
 
-## Developers
+## 👥  Developers
 
 This project was initially created on the Code First Girls CFGDegree with the below developers. [@Rachel-Tookey](https://www.github.com/Rachel-Tookey) and [@Fabi-P](https://www.github.com/Fabi-P) forked off the initial repo and have continued development, implementing a modular code structure, ORMs with SQLalchemy, OAuth and interactive web elements with Javascript. 
 

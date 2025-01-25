@@ -26,7 +26,7 @@ class MyTest(TestCase):
     def test_template_rendered_choice(self):
         with self.client:
             with self.client.session_transaction() as test_sess:
-                test_sess['mood_dict'] = {'sad': ''}
+                test_sess['mood_dict'] = {'sad': '', 'sad_gif': ''}
             self.client.get('/choice/sad')
             self.assert_template_used('choice.html')
 

@@ -1,5 +1,5 @@
 .parent-container {
-    position: relative;
+    position: absolute;
     width: 100%;
 }
 
@@ -11,7 +11,7 @@
     font-family: "Outfit", sans-serif;
     font-weight: 700;
     color: #A77A01;
-    top: -210px;
+    top: -230px;
     left: -100px;
     z-index: 10;
     white-space: nowrap;

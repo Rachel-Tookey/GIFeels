@@ -139,7 +139,7 @@ By running app.py in your IDE you will be able to launch https://127.0.0.1:443 (
 
 ### _Docker_ 
 
-Ensure you have Docker installed on your device. You can follow [this guide](https://docs.docker.com/get-started/get-docker/). Run [docker-compose.yml](compose.yml). This uses nginx to provide a reverse proxy to the app's container. The app will be accessible at https://127.0.0.1:443.
+Ensure you have Docker installed on your device. You can follow [this guide](https://docs.docker.com/get-started/get-docker/). Run [compose.yml](compose.yml). This uses nginx to provide a reverse proxy to the app's container. The app will be accessible at https://127.0.0.1:443.
 
 
 <br> 

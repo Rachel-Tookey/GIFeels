@@ -45,13 +45,13 @@ class TestWebApp(unittest.TestCase):
         db.session.add(test_localuser_two)
 
         date = datetime(2024, 5, 31).date()
-        test_entries_one = Entries(id=1, user_id=1, entry_date=date, emotion='frustrated', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!')
+        test_entries_one = Entries(id=1, user_id=1, entry_date=date, emotion='frustrated', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', giphy_url_gif='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.gif', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!')
 
         date = datetime(2025, 5, 31).date()
-        test_entries_two = Entries(id=2, user_id=2, entry_date=date, emotion='happy', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
+        test_entries_two = Entries(id=2, user_id=2, entry_date=date, emotion='happy', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', giphy_url_gif='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.gif', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
 
         date = datetime(2026, 5, 31).date()
-        test_entries_three = Entries(id=3, user_id=1, entry_date=date, emotion='angry', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Quote', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
+        test_entries_three = Entries(id=3, user_id=1, entry_date=date, emotion='angry', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', giphy_url_gif='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.gif', choice='Quote', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
 
 
         db.session.add(test_entries_one)
@@ -101,7 +101,7 @@ class TestWebApp(unittest.TestCase):
 
     def test_returns_correct_entry(self):
         date = datetime(2024, 5, 31).date()
-        test_entries_one = Entries(id=1, user_id=1, entry_date=date, emotion='frustrated', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
+        test_entries_one = Entries(id=1, user_id=1, entry_date=date, emotion='frustrated', giphy_url='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4?cid=0303f60aw8n6rbf1tb5l49kgndy9ynu24ksk32rvhu477sdi&ep=v1_gifs_search&rid=200w.mp4&ct=g',  giphy_url_gif='https://media4.giphy.com/media/xUNd9AWlNxNgnxiIxO/200w.mp4', choice='Joke', content='What did the pirate say on his 80th birthday? Aye Matey!', diary_entry='Super frustrated!')
         resp = repository.get_records(1, date)
         assert resp.giphy_url == test_entries_one.giphy_url
         assert resp.emotion == test_entries_one.emotion
@@ -163,13 +163,13 @@ class TestWebApp(unittest.TestCase):
         date = datetime(2027, 5, 31).date()
         resp = repository.check_entry_exists(1, date)
         assert resp is False
-        repository.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', choice='Joke', response='jks')
+        repository.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', giphy_url_gif='www.giphy_url.gif', choice='Joke', response='jks')
         resp = repository.check_entry_exists(1, date)
         assert resp is True
 
     def test_journal_added(self):
         date = datetime(2027, 5, 31).date()
-        repository.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', choice='Joke', response='jks')
+        repository.today_emotion(user_id=1, date=date, emotion='angry', giphy_url='www.giphy_url', giphy_url_gif='www.giphy_url.gif', choice='Joke', response='jks')
         resp = repository.check_journal_entry_exists(1, date)
         assert resp is False
         repository.add_journal("New journal", 1, date)

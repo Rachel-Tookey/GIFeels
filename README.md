@@ -2,7 +2,7 @@
 
 GIFeels is a mood tracker web app. It is built using Python-Flask, MySQL, Jinja, HTML, CSS and JavaScript, and integrates 3 external APIs. 
 
-## User Stories
+## 👩🏼‍💻 User Stories
 
 On the homepage, the user is invited to select the gif that best represents their mood. Once selected, they are offered a choice between an inspirational quote or joke to improve their mindset. They are given the option to save this. 
 
@@ -10,7 +10,7 @@ If they select save, they will be invited to log in (or register). Once logged i
 
 <br> 
 
-## Project Structure: 
+## 🧬 Project Structure: 
 
 ```mermaid
 flowchart LR
@@ -68,7 +68,7 @@ erDiagram
 
 <br> 
 
-## Requirements
+## ✅ Requirements
 
 
 - A virtual environment on your IDE to install requirements from requirements.txt
@@ -103,7 +103,7 @@ erDiagram
 <br> 
 
 
-## Set-up 
+## 📋 Set-up 
 
 <br> 
 
@@ -129,15 +129,15 @@ erDiagram
 <br> 
 
 
-## Running the app: 
+## ➡️ Running the app: 
 
 You can run the app via an IDE, like Pycharm, or Docker. Please note: the front-end design has been optimised for Google Chrome Browser and for the best experience, we'd recommend using this.
 
-### _IDE_
+### 💻 _IDE_
 
 By running app.py in your IDE you will be able to launch https://127.0.0.1:443 (or http://127.0.0.1:5500 if not using HTTPS) and go to the homepage of the app.
 
-### _Docker_ 
+### 🐳 _Docker_
 
 Ensure you have Docker installed on your device. You can follow [this guide](https://docs.docker.com/get-started/get-docker/). Run [compose.yml](compose.yml). This uses nginx to provide a reverse proxy to the app's container. The app will be accessible at https://127.0.0.1:443.
 
@@ -145,7 +145,7 @@ Ensure you have Docker installed on your device. You can follow [this guide](htt
 <br> 
 
 
-## Using the app: 
+## 🥹 Using the app: 
 
 
 The app will guide you through choosing how you feel and offer a choice for a joke or a quote. It will then allow you to add a journal entry.
@@ -170,7 +170,7 @@ Password: hello123
 
 <br> 
 
-## Features
+## 🤩 Features
 
 | Feature                                                            | Image                                                                                                                                                                                                             |
 |--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -132,11 +132,11 @@ class TestWebApp(unittest.TestCase):
 
     def test_get_emotion_count_one(self):
         resp = repository.get_emotion_count(1, 'frustrated', 5, 2024)
-        assert resp is 1
+        assert resp == 1
 
     def test_get_emotion_count_zero(self):
         resp = repository.get_emotion_count(1, 'frustrated', 4, 2024)
-        assert resp is 0
+        assert resp == 0
 
     def test_get_month_emotions(self):
         expected_list =[{'name': 'happy', 'value': 0},

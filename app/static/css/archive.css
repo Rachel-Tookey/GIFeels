@@ -1,3 +1,9 @@
+.container2 {
+  display: -webkit-box; /* Older Safari */
+  display: -ms-flexbox; /* IE 10 */
+  display: flex;
+}
+
 
 .main-section {
   margin-top: 32px;
@@ -57,23 +63,7 @@
 }
 
 
-.diary-body {
-  width: 100%;
-  max-width: 500px;
-  overflow: hidden;
-  margin: 50px auto; /* Center horizontally */
-  border-radius: 16px;
-  border: 1.5px solid #a77b0133;
-  box-shadow: 8px 8px 8px rgba(170, 90, 10, 0.727);
-  background: linear-gradient(#FFF0C6, #fcde83a6);
-  transition: transform .3s; /* Animation */
-  word-wrap: break-word;
-  overflow: hidden;
-  flex-grow: 0;
-  margin-top: 0px; /* Adjust spacing */
-  margin-bottom: 50px; /* Adjust spacing */
-  margin-right: 800px;
-}
+
 
 
 .quote-body {
@@ -133,6 +123,10 @@
   font-weight: 600;
 }
 
+#delBut:hover {
+  transform: scale(1.05);
+}
+
 .archive-body:hover,
 .quote-body:hover,
 .diary-body:hover{
@@ -179,3 +173,55 @@ h1 {
   border-radius: 16px;
 }
 
+.diary {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  margin: 50px auto; /* Center horizontally */
+  border-radius: 16px;
+  border: 1.5px solid #a77b0133;
+  box-shadow: 8px 8px 8px rgba(170, 90, 10, 0.727);
+  background: linear-gradient(#FFF0C6, #fcde83a6);
+  transition: transform .3s; /* Animation */
+  word-wrap: break-word;
+  overflow: hidden;
+  flex-grow: 0;
+  margin-top: 0px; /* Adjust spacing */
+  margin-bottom: 50px; /* Adjust spacing */
+  margin-right: 800px;
+}
+
+
+#calendar-box {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  margin: 50px auto; /* Center horizontally */
+  border-radius: 16px;
+  border: 1.5px solid #a77b0133;
+  box-shadow: 8px 8px 8px rgba(170, 90, 10, 0.727);
+  background: linear-gradient(#FFF0C6, #fcde83a6);
+  transition: transform .3s; /* Animation */
+  word-wrap: break-word;
+  overflow: hidden;
+  flex-grow: 0;
+  margin-top: 0px; /* Adjust spacing */
+  margin-bottom: 50px; /* Adjust spacing */
+  margin-right: 800px;
+}
+
+#calendar-box:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+#calendar-box p {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 450;
+  font-size: 15px;
+  font-style: normal;
+  color: #b48401;
+  padding: 10px;
+  text-align: center;
+  }

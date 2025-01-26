@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
              document.body.style.backgroundColor = color;
              container.style.boxShadow = '0 0 10px #7c6cac';
              bar.style.boxShadow = '0 0 10px #7c6cac';
+
      };
 
 
@@ -70,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstDayOfMonth = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const monthAndYear = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-
 
         // Set the month and year in the header
         monthYearDisplay.textContent = monthAndYear;
@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.textContent = day;
                     link.color = '#ffffff';
                     link.href = `/archive/${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    link.target="_blank";
                     dayDiv.appendChild(link);
 
                     // create the gif display on hover

@@ -2,6 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentLocation = window.location;
     const deleteButton = document.getElementById('delBut');
+    const calBox = document.getElementById('calendar-box');
+    const calArea = document.getElementById('cal-area');
+
+
+    calBox.addEventListener('click', () => {
+        getGoogleCal();
+    });
 
     deleteButton.addEventListener('click', () => {
         let result = confirm("Delete this record? This cannot be undone.");
@@ -35,6 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    function getGoogleCal() {
+            $.ajax({
+            url: currentLocation,
+            type: 'POST',
+            success: function (result) {
+                calArea.textContent = result['text'];
+            }
+        });
+    };
+
+
 
     const diaryBox = document.getElementById('diaryText');
     const editText = document.getElementById('edit');
@@ -54,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             textarea.value = diaryBox.textContent;
             textarea.className = "diary-input";
             textarea.style.wrap = "soft";
-            textarea.maxlength = "350";
+            textarea.maxLength = "350";
             textarea.textContent = diaryBox.textContent;
             diaryBox.textContent = '';
             diaryBox.appendChild(textarea);

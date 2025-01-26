@@ -299,8 +299,9 @@ body {
 @media (max-width: 1350px) {
 
     .calendar-container {
+        align: center;
         width: 90%;
-        left: 5%;
+        left: 15%;
         top: 15%; /* Adjusted top for mobile */
    }
 

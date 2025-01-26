@@ -1,36 +1,4 @@
-.parent-container {
-    position: absolute;
-    width: 100%;
-}
 
-
-.overview {
-    position: absolute;
-    text-align: center;
-    font-size: 18px;
-    font-family: "Outfit", sans-serif;
-    font-weight: 700;
-    color: #A77A01;
-    top: -230px;
-    left: -100px;
-    z-index: 10;
-    white-space: nowrap;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding: 20px;
-    justify-content: center;
-    align-items: start;
-}
-
-@media screen and (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-}
 
 /** please keep this code for the nav bar and footer.
 have tried removing them and it made everything wonky. **/
@@ -84,8 +52,8 @@ have tried removing them and it made everything wonky. **/
     unicode-bidi: isolate;
     width: 100%;
   }
-  
-  
+
+
   
   /* aligns nav items to the left using nav class */
   .nav {
@@ -110,38 +78,51 @@ have tried removing them and it made everything wonky. **/
   .nav-pills .nav-link.active:hover {
     background: #5e547f;
   }
-  
-  /* NAV BAR MOBILE VIEW */
-  @media screen and (max-width: 600px) {
-    .nav {
-      flex-direction: column;
-      /* Stack nav items vertically does this even work lol*/
-      align-items: center;
-      /* Center align nav items*/
-    }
-  
-    .nav-item {
-      margin-bottom: 5px;
-      /* Add space between nav items */
-    }
-  }
+
 
 /* BODY */
 
 
 body {
     font-family: "Outfit", sans-serif;
-    display: flex;
+    display: block;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    position: relative;
+    min-height: 100vh;
     margin: 0;
     background-color: #F2E7C4;
+    padding-top: 100px;
+    overflow-y: auto;
 }
 
 
 
-/* Calendar Styles */
+.overview {
+    position: absolute;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 700;
+    color: #A77A01;
+    top: -230px;
+    left: -100px;
+    z-index: 10;
+    white-space: nowrap;
+    z-index: 997;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+}
+
+
+/* Calendar Styles*/
 .calendar-container {
     background: #fff;
     border-radius: 10px;
@@ -151,9 +132,13 @@ body {
     position: fixed;
     right: 15%;
     top: 25%;
-    width: 515px;
+    max-width: 515px;
     height: 350px;
+    z-index: 998;
+    width: 80%;
 }
+
+
 
 .calendar-header {
     display: flex;
@@ -253,15 +238,15 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px #0000001a;
     padding: 20px;
-    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 515px;
     height: 350px;
-    position: fixed;
     left: 15%;
     top: 25%;
+    position: fixed;
+    z-index: 999;
 }
 
 .bars {
@@ -308,3 +293,24 @@ body {
     margin-top: 10px;
     width: 20%; /* Match the width of the bar */
 }
+
+
+/* Media query to adjust on smaller screens */
+@media (max-width: 1350px) {
+
+    .calendar-container {
+        width: 90%;
+        left: 5%;
+        top: 15%; /* Adjusted top for mobile */
+   }
+
+    .graph-container {
+        visibility: hidden;
+        width: 90%;
+        left: 5%;
+        top: 70%; /* Adjusted top for mobile */
+    }
+}
+
+
+

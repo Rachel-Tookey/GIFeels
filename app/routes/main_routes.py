@@ -107,7 +107,7 @@ def show_overview():
     return render_template("overview.html")
 
 
-@main.route('/archive/<date>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+@main.route('/archive/<date>', methods=['GET', 'PUT', 'DELETE'])
 @login_required
 def show_archive_by_date(date):
     user_entry = get_records(session['user_id'], date)
@@ -116,10 +116,6 @@ def show_archive_by_date(date):
         return redirect('/overview')
     record = {'emotion': user_entry.emotion, 'gif_url': user_entry.giphy_url, 'choice': user_entry.choice, 'quote_joke': user_entry.content,
               'diary': f"Click to add a diary entry for {date}!" if user_entry.diary_entry is None else user_entry.diary_entry}
-    if request.method == 'POST':
-        print("get google calendar events")
-        googleOauth.getClient()
-        return jsonify({ 'text' : 'wowwee'});
     if request.method == 'PUT':
         add_journal(request.form.get('content'), session['user_id'], date)
     if request.method == 'DELETE':

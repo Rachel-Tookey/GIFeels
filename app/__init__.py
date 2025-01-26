@@ -12,6 +12,7 @@ from app.settings.cors_policy import cors_resource
 from flask_wtf.csrf import CSRFProtect
 from redis import Redis
 
+
 db = SQLAlchemy()
 oauth = OAuth()
 bcrypt = Bcrypt()

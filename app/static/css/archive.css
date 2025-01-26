@@ -85,9 +85,8 @@
 }
 
 
-
 .diary-input {
-  width: 100%;
+  width: 90%;
   background: linear-gradient(#FFF0C6, #fcde83a6);
   outline:none;
   border: 3px solid #ff9c78;
@@ -97,6 +96,7 @@
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow: hidden;
+  margin: 5px;
 }
 
 .quote-body {
@@ -157,6 +157,7 @@ h3 {
   margin-top: 10px;
 }
 
+
 h1 {
   margin-top: 40px;
   color: #a27701;
@@ -192,7 +193,7 @@ h1 {
 }
 
 
-#calendar-box {
+#past-box {
   width: 100%;
   max-width: 500px;
   overflow: hidden;
@@ -210,18 +211,38 @@ h1 {
   margin-right: 800px;
 }
 
-#calendar-box:hover {
+#past-box:hover {
   transform: scale(1.05);
   cursor: pointer;
 }
 
-#calendar-box p {
+
+h6 {
+  margin-top: 15px;
+  color: #daa002;
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-weight: 450;
-  font-size: 15px;
+  font-size: 2rem;
   font-style: normal;
-  color: #b48401;
-  padding: 10px;
   text-align: center;
-  }
+  margin-top: 10px;
+  autofocus: false;
+}
+
+
+
+.past-message {
+  width: 95%;
+  align: center;
+  background: linear-gradient(#FFF0C6, #fcde83a6);
+  outline:none;
+  border: 3px solid #ff9c78;
+  resize: none;
+  color: #808080;
+  height: 100px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  margin: 10px;
+}

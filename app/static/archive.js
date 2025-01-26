@@ -2,13 +2,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentLocation = window.location;
     const deleteButton = document.getElementById('delBut');
-    const calBox = document.getElementById('calendar-box');
-    const calArea = document.getElementById('cal-area');
+    const calBox = document.getElementById('past-box');
+    const calArea = document.getElementById('past-message');
 
 
-    calBox.addEventListener('click', () => {
-        getGoogleCal();
-    });
+    calArea.addEventListener('click', () =>
+     {
+        addBox();
+     }
+     );
+
+
+ function addBox() {
+
+            const textarea = document.createElement("textarea");
+
+            textarea.type = "text";
+            textarea.value = diaryBox.textContent;
+            textarea.className = "diary-input";
+            textarea.style.wrap = "soft";
+            textarea.maxLength = "350";
+            calBox.appendChild(textarea);
+
+            textarea.addEventListener('focus', () => textarea.select() )
+
+            textarea.addEventListener('blur', () => textarea.textContent = "here" );
+
+            textarea.addEventListener('keypress', function(e) {
+                  if (event.key === "Enter") {
+                        event.preventDefault();
+                        textarea.textContent = "here";
+            }});
+        }
+
+
+
 
     deleteButton.addEventListener('click', () => {
         let result = confirm("Delete this record? This cannot be undone.");
@@ -18,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
      );
+
 
     function sendRequest() {
             $.ajax({
@@ -41,17 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         });
     };
-
-    function getGoogleCal() {
-            $.ajax({
-            url: currentLocation,
-            type: 'POST',
-            success: function (result) {
-                calArea.textContent = result['text'];
-            }
-        });
-    };
-
 
 
     const diaryBox = document.getElementById('diaryText');

@@ -92,7 +92,6 @@ body {
     margin: 0;
     background-color: #F2E7C4;
     padding-top: 100px;
-    overflow-y: auto;
 }
 
 
@@ -112,13 +111,10 @@ body {
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 20px;
     padding: 20px;
     justify-content: center;
     align-items: start;
-    position: relative;
 }
 
 
@@ -128,7 +124,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px #0000001a;
     padding: 20px;
-    grid-column: 2;
     position: fixed;
     right: 15%;
     top: 25%;
@@ -302,13 +297,13 @@ body {
         align: center;
         width: 90%;
         left: 15%;
-        top: 15%; /* Adjusted top for mobile */
+        top: 25%; /* Adjusted top for mobile */
    }
 
     .graph-container {
         visibility: hidden;
         width: 90%;
-        left: 5%;
+        left: 15%;
         top: 70%; /* Adjusted top for mobile */
     }
 }

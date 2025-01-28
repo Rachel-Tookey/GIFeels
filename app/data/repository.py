@@ -135,8 +135,10 @@ def get_entry_dates_month(user_id, month, year):
 
 def get_reflections(entry_id):
     reflections = Reflections.query.filter(Reflections.entry_id == entry_id)
-    six_reflections = reflections[-6]
-    return six_reflections
+    if reflections.count() > 6:
+        six_reflections = reflections[-6:]
+        return six_reflections
+    return reflections
 
 
 def save_reflection(entry_id, date, content):

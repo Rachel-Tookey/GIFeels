@@ -119,7 +119,6 @@ def show_archive_by_date(date):
     record = {'emotion': user_entry.emotion, 'gif_url': user_entry.giphy_url, 'choice': user_entry.choice, 'quote_joke': user_entry.content,
               'diary': f"Click to add a diary entry for {date}!" if user_entry.diary_entry is None else user_entry.diary_entry}
     if request.method == 'POST':
-        print(request.form.get('content'))
         save_reflection(user_entry.id, get_utc_date(), request.form.get('content'))
     if request.method == 'PUT':
         add_journal(request.form.get('content'), session['user_id'], date)

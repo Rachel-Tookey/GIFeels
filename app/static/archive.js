@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteButton = document.getElementById('delBut');
     const reflectionArea = document.getElementById('refBox');
 
-
-
     reflectionArea.addEventListener('focus', () => reflectionArea.select() );
 
     reflectionArea.addEventListener('blur', () => {

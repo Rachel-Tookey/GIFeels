@@ -55,7 +55,12 @@
         <!-- Message to past self -->
        <div id="past-box">
             <h3>Reflections</h3>
-            <p id="past-message">Click to write a message to your past self. (This will not be saved. Say what you feel).</p>
+             {% if reflections %}
+                {% for ref in reflections %}
+                    <p class="reflection_text"><span class="ref_date">{{ ref.reflection_date }}:</span> <span class="ref_content">{{ ref.content }}</span> </p>
+                {% endfor %}
+             {% endif %}
+           <input type="text" id="refBox" class="diary-input"></input>
         </div>
 
     </div>

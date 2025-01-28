@@ -132,3 +132,13 @@ def get_entry_dates_month(user_id, month, year):
         date_list[entry.entry_date.strftime("%Y%m%d")] = {'color': colors[entry.emotion], 'url': entry.giphy_url_gif}
     return date_list
 
+
+def get_reflections(entry_id):
+    reflections = Reflections.query.filter(Reflections.entry_id == entry_id)
+    return reflections
+
+
+def save_reflection(entry_id, date, content):
+    new_reflection = Reflections(entry_id=entry_id, reflection_date=date, content=content)
+    db.session.add(new_reflection)
+    db.session.commit()

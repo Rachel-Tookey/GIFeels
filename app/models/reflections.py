@@ -6,7 +6,7 @@ class Reflections(db.Model):
 
     id = Column('id', Integer, primary_key=True)
 
-    entry_id = Column(Integer, ForeignKey('entries.id'), nullable=False)
+    entry_id = Column(Integer, ForeignKey('entries.id', ondelete='CASCADE'), nullable=False)
 
     reflection_date = Column('reflection_date', Date, nullable=False)
 

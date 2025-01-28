@@ -133,6 +133,7 @@
   transform: scale(1.05);
 }
 
+.reflection-text,
 .quote-text,
 .diary-text {
   font-family: "Outfit", sans-serif;
@@ -144,6 +145,8 @@
   padding: 10px;
   text-align: center;
 }
+
+
 
 h3 {
   margin-top: 32px;
@@ -245,4 +248,18 @@ h6 {
   word-wrap: break-word;
   overflow: hidden;
   margin: 10px;
+}
+
+.ref_date {
+    margin: 5px;
+    color: #5c547d;
+}
+
+.diary-input {
+    wrap: soft;
+    max-length: 100;
+}
+
+.ref_content {
+    color: #b48401;
 }

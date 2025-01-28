@@ -2,40 +2,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentLocation = window.location;
     const deleteButton = document.getElementById('delBut');
-    const calBox = document.getElementById('past-box');
-    const calArea = document.getElementById('past-message');
+    const reflectionArea = document.getElementById('refBox');
 
 
-    calArea.addEventListener('click', () =>
-     {
-        addBox();
-     }
-     );
 
+    reflectionArea.addEventListener('focus', () => reflectionArea.select() );
 
- function addBox() {
+    reflectionArea.addEventListener('blur', () => {
+             checkReflection();
+    });
 
-            const textarea = document.createElement("textarea");
-
-            textarea.type = "text";
-            textarea.value = diaryBox.textContent;
-            textarea.className = "diary-input";
-            textarea.style.wrap = "soft";
-            textarea.maxLength = "350";
-            calBox.appendChild(textarea);
-
-            textarea.addEventListener('focus', () => textarea.select() )
-
-            textarea.addEventListener('blur', () => textarea.textContent = "here" );
-
-            textarea.addEventListener('keypress', function(e) {
+    reflectionArea.addEventListener('keypress', function(e) {
                   if (event.key === "Enter") {
                         event.preventDefault();
-                        textarea.textContent = "here";
-            }});
-        }
+                        checkReflection();
+                   }});
 
 
+    function checkReflection() {
+          if (reflectionArea.textContent.length > 4) {
+              saveReflection(reflectionArea.textContent);
+              reflectionArea.style.visibility = hidden;
+              location.reload();
+    }
+    };
+
+
+    function saveReflection(valueToSave) {
+        $.ajax({
+            url: currentLocation,
+            data : {
+            content : valueToSave
+          },
+            type: 'POST',
+            success: function () {
+            }
+        });
+
+    }
 
 
     deleteButton.addEventListener('click', () => {

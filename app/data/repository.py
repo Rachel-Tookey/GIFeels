@@ -3,6 +3,7 @@ from app.models.entries import Entries
 from app.models.user import User
 from app.models.localuser import LocalUser
 from app.models.authuser import AuthUser
+from app.models.reflections import Reflections
 from sqlalchemy import and_, extract
 
 
